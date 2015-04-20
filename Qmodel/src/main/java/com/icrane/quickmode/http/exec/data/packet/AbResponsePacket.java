@@ -1,13 +1,16 @@
 package com.icrane.quickmode.http.exec.data.packet;
 
 import com.icrane.quickmode.cache.CacheType;
-import com.icrane.quickmode.utils.Charset;
 import com.icrane.quickmode.http.HttpDataType;
 import com.icrane.quickmode.http.HttpError;
 import com.icrane.quickmode.http.RequestMode;
 import com.icrane.quickmode.http.exec.data.HttpRequestForm;
+import com.icrane.quickmode.utils.Charset;
 
 import org.apache.http.Header;
+
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("ALL")
 public abstract class AbResponsePacket {
@@ -45,14 +48,28 @@ public abstract class AbResponsePacket {
      *
      * @return 所有请求头，是一个数组
      */
-    public abstract Header[] getHeaders();
+    public abstract Map<String, List<String>> getURLConnHeaders();
 
     /**
      * 设置请求头
      *
      * @param headers 请求头
      */
-    public abstract AbResponsePacket setHeaders(Header... headers);
+    public abstract AbResponsePacket setURLConnHeaders(Map<String,List<String>> headers);
+
+    /**
+     * 获取所有请求头
+     *
+     * @return 所有请求头，是一个数组
+     */
+    public abstract Header[] getClientHeaders();
+
+    /**
+     * 设置请求头
+     *
+     * @param headers 请求头
+     */
+    public abstract AbResponsePacket setClientHeaders(Header[] headers);
 
     /**
      * 获取请求表单

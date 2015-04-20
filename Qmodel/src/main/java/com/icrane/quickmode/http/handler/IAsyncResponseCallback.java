@@ -5,6 +5,7 @@ import com.icrane.quickmode.http.HttpError;
 /**
  * Created by gujiwen on 15/3/19.
  */
+@SuppressWarnings("ALL")
 public interface IAsyncResponseCallback<T> {
     /**
      * 进行处理
@@ -16,8 +17,8 @@ public interface IAsyncResponseCallback<T> {
     /**
      * 异常处理
      *
-     * @param error
-     * @param obj
+     * @param error 错误信息
+     * @param obj   返回的错误信息对象
      */
     public void onFailure(HttpError error, Object obj);
 }

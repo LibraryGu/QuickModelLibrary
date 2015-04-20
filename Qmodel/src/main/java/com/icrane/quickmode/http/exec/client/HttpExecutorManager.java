@@ -10,9 +10,9 @@ import android.os.Message;
 import com.icrane.quickmode.app.QModel;
 import com.icrane.quickmode.app.Releasable;
 import com.icrane.quickmode.http.HttpError;
+import com.icrane.quickmode.http.OnResponseListener;
 import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
 import com.icrane.quickmode.http.exec.data.packet.impl.HttpResponsePacket;
-import com.icrane.quickmode.http.handler.AsyncBasicResponse;
 import com.icrane.quickmode.utils.common.CommonUtils;
 
 import java.util.Observable;
@@ -47,7 +47,7 @@ public final class HttpExecutorManager implements Observer, Releasable {
     /**
      * 请求客户端
      */
-    private BasicClientExecutor mClientExecutor;
+    private AbClientExecutor mClientExecutor;
     /**
      * 连接管理者
      */
@@ -66,8 +66,8 @@ public final class HttpExecutorManager implements Observer, Releasable {
         @Override
         public void handleMessage(Message msg) {
 
-            AsyncBasicResponse asyncBasicResponse = mClientExecutor
-                    .getAsyncBasicResponse();
+            OnResponseListener asyncBasicResponse = mClientExecutor
+                    .getOnResponseListener();
             if (!CommonUtils.isEmpty(asyncBasicResponse)) {
                 switch (msg.what) {
                     case UPDATE:
@@ -84,7 +84,7 @@ public final class HttpExecutorManager implements Observer, Releasable {
 
     @Override
     public synchronized void update(Observable observable, Object data) {
-        Object dataObject = mClientExecutor.getAsyncBasicResponse().onReceive((AbResponsePacket) data);
+        Object dataObject = mClientExecutor.getOnResponseListener().onReceive((AbResponsePacket) data);
         commit(UPDATE, dataObject, COMMIT_DURATION);
     }
 
@@ -116,11 +116,11 @@ public final class HttpExecutorManager implements Observer, Releasable {
      *
      * @param executor 进行网络请求的执行对象
      */
-    public void execute(BasicClientExecutor executor) {
+    public void execute(AbClientExecutor executor) {
         // 初始化
         this.mClientExecutor = executor;
         this.mClientExecutor.bindExecutorManager(this);
-        mExecutorService.execute(executor);
+        mExecutorService.execute(this.mClientExecutor);
     }
 
     /**
@@ -232,7 +232,7 @@ public final class HttpExecutorManager implements Observer, Releasable {
      *
      * @return 客户端网络执行者
      */
-    public BasicClientExecutor getClientExecutor() {
+    public AbClientExecutor getClientExecutor() {
         return mClientExecutor;
     }
 
@@ -241,7 +241,7 @@ public final class HttpExecutorManager implements Observer, Releasable {
      *
      * @param executor 客户端网络执行者
      */
-    public void setClientExecutor(BasicClientExecutor executor) {
+    public void setClientExecutor(AbClientExecutor executor) {
         this.mClientExecutor = executor;
     }
 
@@ -249,16 +249,12 @@ public final class HttpExecutorManager implements Observer, Releasable {
     public void release() {
 
         if (!CommonUtils.isEmpty(mHttpExecutorManager)) {
-
             if (shutdownAwaitTermination(SHUTDOWN_AWAIT_TERMINATION_TIMEOUT)) {
-
                 mExecutorService = null;
                 if (!CommonUtils.isEmpty(mClientExecutor)) {
                     mClientExecutor.release();
                 }
-
             }
-
             mConnectivityManager = null;
             mHttpExecutorManager = null;
             System.gc();

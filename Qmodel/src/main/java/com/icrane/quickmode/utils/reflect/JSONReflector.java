@@ -7,9 +7,11 @@ import org.json.JSONObject;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /*
  * 反射类，利用反射机制将json反射为对象
@@ -84,5 +86,24 @@ public final class JSONReflector<T> {
             }
         }
         return objList;
+    }
+
+    public static Map<String, Object> toMap(Object obj, AMPlusReflector.ReflectType f_type) {
+
+        Map<String, Object> objMap = new HashMap<String, Object>();
+
+        Field[] fields = AMPlusReflector.getFields(obj.getClass(), f_type);
+        Map<String, Field> fieldsMap = AMPlusReflector
+                .convertFieldsToMap(fields);
+        Set<String> keySet = fieldsMap.keySet();
+        for (String key:keySet) {
+            try {
+                Object value = fieldsMap.get(key).get(obj);
+                objMap.put(key, value);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return objMap;
     }
 }

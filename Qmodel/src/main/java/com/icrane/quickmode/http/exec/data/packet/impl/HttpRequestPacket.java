@@ -35,6 +35,7 @@ public class HttpRequestPacket extends AbRequestPacket {
      * 缓存类型
      */
     private CacheType cacheType = CacheType.LRU;
+
     /**
      * 请求表单对象
      */

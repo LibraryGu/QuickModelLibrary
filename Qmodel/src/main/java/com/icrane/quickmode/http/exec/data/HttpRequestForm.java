@@ -16,6 +16,8 @@ public final class HttpRequestForm {
 
     // 请求方式
     private RequestMethod requestMethod = RequestMethod.GET;
+
+
     private Map<String, String> parameters = Collections.synchronizedMap(new HashMap<String, String>());
     private List<BasicNameValuePair> valuePairs = Collections.synchronizedList(new ArrayList<BasicNameValuePair>());
 

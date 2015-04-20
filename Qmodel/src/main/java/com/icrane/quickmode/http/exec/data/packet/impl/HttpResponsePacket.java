@@ -10,6 +10,9 @@ import com.icrane.quickmode.utils.Charset;
 
 import org.apache.http.Header;
 
+import java.util.List;
+import java.util.Map;
+
 public class HttpResponsePacket extends AbResponsePacket {
 
     /**
@@ -51,7 +54,9 @@ public class HttpResponsePacket extends AbResponsePacket {
     /**
      * 请求头
      */
-    private Header[] headers;
+    private Map<String, List<String>> urlConnHeaders;
+
+    private Header[] clientHeaders;
     /**
      * 数据类型
      */
@@ -107,13 +112,24 @@ public class HttpResponsePacket extends AbResponsePacket {
     }
 
     @Override
-    public Header[] getHeaders() {
-        return headers;
+    public Map<String, List<String>> getURLConnHeaders() {
+        return urlConnHeaders;
     }
 
     @Override
-    public AbResponsePacket setHeaders(Header... headers) {
-        this.headers = headers;
+    public AbResponsePacket setURLConnHeaders(Map<String, List<String>> headers) {
+        this.urlConnHeaders = headers;
+        return this;
+    }
+
+    @Override
+    public Header[] getClientHeaders() {
+        return clientHeaders;
+    }
+
+    @Override
+    public AbResponsePacket setClientHeaders(Header[] headers) {
+        this.clientHeaders = headers;
         return this;
     }
 
