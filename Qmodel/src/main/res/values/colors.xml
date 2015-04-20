@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <!--天空蓝-->
+    <color name="sky_blue">#33B5E5</color>
+    <!--紫色-->
+    <color name="purple">#AA66CC</color>
+    <!--草绿色-->
+    <color name="green_grass">#99CC00</color>
+    <!--橙色-->
+    <color name="orange">#FFBB33</color>
+    <!--猩红色-->
+    <color name="scarlet">#FF4444</color>
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="app_name">AppModel_Plus</string>
+    <!-- 请求网络 -->
+    <string name="check_network_available">请检查当前网络,确保已连接Wifi或运营商提供的网络</string>
+    <string name="server_no_response">服务器端没有响应</string>
+    <string name="client_no_connecte">客户端连接网络错误</string>
+    <string name="connection_time_out">请求超时</string>
+    <string name="cache_not_exist">请求缓存失败</string>
+    <string name="request_data_error">请求数据出错</string>
+	<!-- dialog -->
+	<string name="dialogIcon">对话框icon</string>
+</resources>

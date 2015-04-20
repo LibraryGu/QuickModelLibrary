@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BasicImageView">
+        <attr name="fromURL" format="string|reference" />
+    </declare-styleable>
+    <declare-styleable name="CircleImageView">
+        <attr name="radius" format="fraction" />
+    </declare-styleable>
+    <declare-styleable name="RoundImageView">
+        <attr name="round" format="fraction" />
+    </declare-styleable>
+</resources>
