@@ -13,7 +13,7 @@ public interface JSONConvert {
 
     public JSONObject convertToJSONObject() throws IllegalAccessException;
 
-    public JSONArray convertToJSONArray();
+    public JSONArray convertToJSONArray() throws IllegalAccessException;
 
     public String convertToJSONString(JSONReflector.ConvertObject object) throws IllegalAccessException;
 

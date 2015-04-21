@@ -24,8 +24,8 @@ public abstract class JSONConvertModel extends ParcelableModel implements JSONCo
     }
 
     @Override
-    public JSONArray convertToJSONArray() {
-        return null;
+    public JSONArray convertToJSONArray() throws IllegalAccessException {
+        return JSONReflector.toJSONArray(this, AMPlusReflector.ReflectType.DEFAULT);
     }
 
     @Override
