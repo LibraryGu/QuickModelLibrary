@@ -24,46 +24,42 @@ public final class JSONReflector<T> {
     // 测试使用
     public static final String TAG = "JSONReflector";
 
+    public enum ConvertObject {
+        OBJECT, ARRAY
+    }
+
     /**
      * 转化为对象
      *
      * @param jsonObj JSONObject对象
      * @param type    对象类型
-     * @param f_type  反射类型
+     * @param f_type  反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰。
      * @return <T> 返回指定类型的对象
      */
-    public static <T> T toModel(JSONObject jsonObj, Type type, AMPlusReflector.ReflectType f_type) {
-        T object = null;
-        if (jsonObj != null) {
-            // 获取迭代器
-            Iterator<String> keys = jsonObj.keys();
-            // 获取实例
-            object = AMPlusReflector.newInstance((Class<?>) type);
-            // 获取实例类型
-            Class<?> cls = object.getClass();
-            // 获取域数组
-            Field[] fields = AMPlusReflector.getFields(cls, f_type);
-            // 生成Map实例
-            Map<String, Field> fieldsMap = AMPlusReflector
-                    .convertFieldsToMap(fields);
-            while (keys.hasNext()) {
-                String key = keys.next();
-                final Field field = fieldsMap.get(key);
-                if (field != null) {
-                    try {
-                        final Object value = jsonObj.get(key);
-                        field.set(object, value);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (IllegalArgumentException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+    public static <T> T toModel(JSONObject jsonObject, Type type, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
+
+        if (jsonObject == null) throw new NullPointerException("JSONObject is null");
+        // 获取迭代器
+        Iterator<String> keys = jsonObject.keys();
+        // 获取实例
+        T object = AMPlusReflector.newInstance((Class<?>) type);
+        // 获取实例类型
+        Class<?> cls = object.getClass();
+        // 获取域数组
+        Field[] fields = AMPlusReflector.getFields(cls, f_type);
+        // 生成Map实例
+        Map<String, Field> fieldsMap = AMPlusReflector.convertFieldsToMap(fields);
+
+        while (keys.hasNext()) {
+            String key = keys.next();
+            final Field field = fieldsMap.get(key);
+            if (field == null)
+                throw new NullPointerException("key is " + key + " field " + " is null");
+            final Object value = jsonObject.get(key);
+            field.set(object, value);
         }
         return object;
+
     }
 
     /**
@@ -71,52 +67,95 @@ public final class JSONReflector<T> {
      *
      * @param jsonArray JSONArray对象
      * @param type      指定对象类型
-     * @param f_type    反射类型
+     * @param f_type    反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return List<T>对象
      */
-    public static <T> List<T> toModel(JSONArray jsonArray, Type type,
-                                      AMPlusReflector.ReflectType f_type) {
-        List<T> objList = new ArrayList<T>();
-        if (jsonArray != null) {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                try {
-                    T object = toModel(jsonArray.getJSONObject(i), type, f_type);
-                    objList.add(object);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
+    public static <T> List<T> toModel(JSONArray jsonArray, Type type, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
+
+        if (jsonArray == null) throw new NullPointerException("JSONArray is null");
+        List<T> objectList = new ArrayList<T>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            T object = toModel(jsonArray.getJSONObject(i), type, f_type);
+            objectList.add(object);
         }
-        return objList;
+        return objectList;
+
+    }
+
+    /**
+     * 转换成Map
+     *
+     * @param jsonObject    指定对象
+     * @param f_type 反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
+     * @return Map对象
+     */
+    public static Map<String, Object> toModel(JSONObject jsonObject, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
+
+        if (jsonObject == null) throw new NullPointerException("JSONObject is null");
+        Map<String, Object> categorys = new HashMap<String, Object>();
+        Iterator<String> keys = jsonObject.keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            Object value = jsonObject.opt(key);
+            if (value instanceof JSONArray) {
+                value = toModel((JSONArray) value, Object.class, f_type);
+            } else if (value instanceof JSONArray) {
+                value = toModel((JSONObject) value, f_type);
+            }
+            categorys.put(key, value);
+        }
+        return categorys;
+
     }
 
     /**
      * 转换成JSONObject
      *
-     * @param obj    指定对象
-     * @param f_type 反射类型
+     * @param object    指定对象
+     * @param f_type 反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return JSONObject对象
      */
-    public static JSONObject toModel(Object obj, AMPlusReflector.ReflectType f_type) {
+    public static JSONObject toJSONObject(Object object, AMPlusReflector.ReflectType f_type) throws IllegalAccessException {
 
-        Map<String, Object> objMap = new HashMap<String, Object>();
-        Object object = obj;
+        if (object == null) throw new NullPointerException("object is null");
+        Map<String, Object> categorys = new HashMap<String, Object>();
         Field[] fields = AMPlusReflector.getFields(object.getClass(), f_type);
 
         for (Field field : fields) {
-            try {
-                Object value = field.get(object);
-                if (value instanceof JSONConvertModel) {
-                    objMap.put(field.getName(), ((JSONConvert) value).convertToJSON());
-                } else {
-                    objMap.put(field.getName(), value);
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
+            Object value = field.get(object);
+            Object result = (value instanceof JSONConvertModel) ?
+                    categorys.put(field.getName(), ((JSONConvert) value).convertToJSONObject())
+                    : categorys.put(field.getName(), toJSONObject(value, f_type));
         }
-        JSONObject jsonObject = new JSONObject(objMap);
+        JSONObject jsonObject = new JSONObject(categorys);
 
         return jsonObject;
     }
+
+    /**
+     * 转换成JSONArray
+     *
+     * @param object    指定对象
+     * @param f_type 反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
+     * @return JSONArray对象
+     */
+    public static JSONArray toJSONArray(Object object, AMPlusReflector.ReflectType f_type) throws IllegalAccessException {
+
+        if (object == null) throw new NullPointerException("object is null");
+
+        List<Object> categorys = new ArrayList<Object>();
+        Field[] fields = AMPlusReflector.getFields(object.getClass(), f_type);
+
+        for (Field field : fields) {
+            Object value = field.get(object);
+            boolean result = (value instanceof JSONConvertModel) ?
+                    categorys.add(((JSONConvert) value).convertToJSONObject())
+                    : categorys.add(toJSONObject(value, f_type));
+        }
+        JSONArray array = new JSONArray(categorys);
+
+        return array;
+    }
+
+
 }
