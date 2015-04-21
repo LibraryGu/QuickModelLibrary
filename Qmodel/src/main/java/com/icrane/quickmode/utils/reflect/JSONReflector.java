@@ -2,7 +2,6 @@ package com.icrane.quickmode.utils.reflect;
 
 import com.icrane.quickmode.model.JSONConvert;
 import com.icrane.quickmode.model.JSONConvertModel;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,7 +62,7 @@ public final class JSONReflector<T> {
     }
 
     /**
-     * 转化为集合
+     *
      *
      * @param jsonArray JSONArray对象
      * @param type      指定对象类型
@@ -85,8 +84,8 @@ public final class JSONReflector<T> {
     /**
      * 转换成Map
      *
-     * @param jsonObject    指定对象
-     * @param f_type 反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
+     * @param jsonObject 指定对象
+     * @param f_type     反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return Map对象
      */
     public static Map<String, Object> toModel(JSONObject jsonObject, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
@@ -111,7 +110,7 @@ public final class JSONReflector<T> {
     /**
      * 转换成JSONObject
      *
-     * @param object    指定对象
+     * @param object 指定对象
      * @param f_type 反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return JSONObject对象
      */
@@ -135,7 +134,7 @@ public final class JSONReflector<T> {
     /**
      * 转换成JSONArray
      *
-     * @param object    指定对象
+     * @param object 指定对象
      * @param f_type 反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return JSONArray对象
      */
