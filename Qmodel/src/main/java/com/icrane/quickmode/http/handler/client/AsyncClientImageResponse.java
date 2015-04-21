@@ -5,11 +5,11 @@ import android.graphics.BitmapFactory;
 
 import com.icrane.quickmode.http.HttpDataType;
 import com.icrane.quickmode.http.HttpError;
+import com.icrane.quickmode.http.IAsyncResponseCallback;
 import com.icrane.quickmode.http.exec.client.AbClientExecutor;
 import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
-import com.icrane.quickmode.http.IAsyncResponseCallback;
 
-import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 
 import java.io.IOException;
 
@@ -17,11 +17,11 @@ import java.io.IOException;
  * Created by gujiwen on 15/3/19.
  */
 @SuppressWarnings("ALL")
-public abstract class AsyncClientImageResponse extends AsyncClientByteResponse implements IAsyncResponseCallback<Bitmap> {
+public abstract class AsyncClientImageResponse extends AsyncClientBasicResponse implements IAsyncResponseCallback<Bitmap> {
 
     @Override
-    public Object onRead(AbClientExecutor executor, HttpEntity entity) throws IOException {
-        return BitmapFactory.decodeStream(entity.getContent());
+    public Object onRead(AbClientExecutor executor, HttpResponse response) throws IOException {
+        return BitmapFactory.decodeStream(response.getEntity().getContent());
     }
 
     @Override

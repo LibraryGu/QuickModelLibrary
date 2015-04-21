@@ -1,9 +1,9 @@
 package com.icrane.quickmode.http.handler.client;
 
 import com.icrane.quickmode.http.exec.client.AbClientExecutor;
-import com.icrane.quickmode.utils.common.Streams;
 
-import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ public abstract class AsyncClientByteResponse extends AsyncClientBasicResponse {
     public static final int DEFAULT_BUFFSIZE = 1024 * 1024;
 
     @Override
-    public Object onRead(AbClientExecutor executor, HttpEntity entity) throws IOException {
-        return Streams.read(entity.getContent(), DEFAULT_BUFFSIZE, entity.getContentLength());
+    public Object onRead(AbClientExecutor executor, HttpResponse response) throws IOException {
+        return EntityUtils.toByteArray(response.getEntity());
     }
 }

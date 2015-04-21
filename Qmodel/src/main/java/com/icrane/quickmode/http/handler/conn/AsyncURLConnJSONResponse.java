@@ -23,10 +23,15 @@ public abstract class AsyncURLConnJSONResponse extends AsyncURLConnCommonRespons
         try {
             if (CommonUtils.isEmpty(response)) {
                 HttpExecutorManager.getInstance().commitErrorMessage(HttpExecutorManager.ERROR,
-                        HttpError.ERROR_EXCEPTION, response, new NullPointerException("dataType is null"));
+                        HttpError.ERROR_EXCEPTION, response, new NullPointerException("response is null"));
                 return jsonStr;
             }
             HttpDataType dataType = response.getDataType();
+            if (CommonUtils.isEmpty(dataType)) {
+                HttpExecutorManager.getInstance().commitErrorMessage(HttpExecutorManager.ERROR,
+                        HttpError.ERROR_EXCEPTION, response, new NullPointerException("dataType is null"));
+                return jsonStr;
+            }
             switch (dataType) {
                 case CONTENT:
                     jsonStr = response.getContent().toString();

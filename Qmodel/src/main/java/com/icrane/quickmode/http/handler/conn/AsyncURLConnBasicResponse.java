@@ -14,7 +14,7 @@ import java.net.HttpURLConnection;
  * Created by gujiwen on 15/4/21.
  */
 @SuppressWarnings("ALL")
-public abstract class AsyncURLConnBasicResponse extends AsyncResponseHandler<HttpURLConnection, HttpURLConnection> {
+public abstract class AsyncURLConnBasicResponse extends AsyncResponseHandler<HttpURLConnection> {
 
     @Override
     public int getResponseCode(HttpURLConnection response) throws IOException {

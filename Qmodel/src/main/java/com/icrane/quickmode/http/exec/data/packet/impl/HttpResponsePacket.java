@@ -3,7 +3,7 @@ package com.icrane.quickmode.http.exec.data.packet.impl;
 import com.icrane.quickmode.cache.CacheType;
 import com.icrane.quickmode.http.HttpDataType;
 import com.icrane.quickmode.http.HttpError;
-import com.icrane.quickmode.http.RequestMode;
+import com.icrane.quickmode.http.RequestType;
 import com.icrane.quickmode.http.exec.data.HttpRequestForm;
 import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
 import com.icrane.quickmode.utils.Charset;
@@ -72,7 +72,7 @@ public class HttpResponsePacket extends AbResponsePacket {
     /**
      * 请求类型
      */
-    private RequestMode requestType = RequestMode.REQUEST_MODE_NETWORK;
+    private RequestType requestType = RequestType.REQUEST_MODE_NETWORK;
     /**
      * 异常信息对象
      */
@@ -222,12 +222,12 @@ public class HttpResponsePacket extends AbResponsePacket {
     }
 
     @Override
-    public RequestMode getRequestType() {
+    public RequestType getRequestType() {
         return requestType;
     }
 
     @Override
-    public AbResponsePacket setRequestType(RequestMode requestType) {
+    public AbResponsePacket setRequestType(RequestType requestType) {
         this.requestType = requestType;
         return this;
     }

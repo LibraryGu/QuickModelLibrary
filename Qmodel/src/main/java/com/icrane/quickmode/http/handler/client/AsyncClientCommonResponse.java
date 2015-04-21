@@ -1,16 +1,16 @@
 package com.icrane.quickmode.http.handler.client;
 
 import com.icrane.quickmode.http.exec.client.AbClientExecutor;
-import com.icrane.quickmode.utils.common.Streams;
 
-import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
 public abstract class AsyncClientCommonResponse extends AsyncClientBasicResponse {
 
     @Override
-    public Object onRead(AbClientExecutor executor, HttpEntity entity) throws IOException {
-        return Streams.read(Streams.obtainBufferedReader(entity.getContent(), executor.getRequestPacket().getCharset()));
+    public Object onRead(AbClientExecutor executor, HttpResponse response) throws IOException {
+        return EntityUtils.toString(response.getEntity(), executor.getRequestPacket().getCharset().obtain());
     }
 }

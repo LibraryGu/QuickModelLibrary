@@ -1,5 +1,6 @@
 package com.icrane.quickmode.http.handler;
 
+import com.icrane.quickmode.http.HttpDataType;
 import com.icrane.quickmode.http.HttpError;
 import com.icrane.quickmode.http.OnResponseListener;
 import com.icrane.quickmode.http.exec.client.AbClientExecutor;
@@ -15,7 +16,8 @@ import java.io.IOException;
 /**
  * Created by gujiwen on 15/4/21.
  */
-public abstract class AsyncResponseHandler<T, V> implements OnResponseListener<T, V> {
+@SuppressWarnings("ALL")
+public abstract class AsyncResponseHandler<T> implements OnResponseListener<T> {
 
     public abstract int getResponseCode(T response) throws IOException;
 
@@ -23,12 +25,15 @@ public abstract class AsyncResponseHandler<T, V> implements OnResponseListener<T
     public AbResponsePacket handleResponse(AbClientExecutor executor, T response) {
 
         // 响应数据包
-        AbResponsePacket responsePacket = null;
+        AbResponsePacket responsePacket = HttpResponsePacket.create();
         try {
             this.onWrite(executor, response);
             // 如果状态码为200，则进行对网络数据的传输
-            if (HttpStatus.SC_OK == getResponseCode(response)) {
+            int statusCode = getResponseCode(response);
+            if (HttpStatus.SC_OK == statusCode) {
                 responsePacket = onPacked(executor, response);
+            } else {
+                responsePacket.setDataType(HttpDataType.CONTENT).setContent("");
             }
         } catch (IllegalStateException e) {
             executor.getHttpExecutorManager().commitErrorMessage(HttpExecutorManager.ERROR,

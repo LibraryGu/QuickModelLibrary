@@ -8,7 +8,7 @@ import com.icrane.quickmode.http.HttpDataType;
 import com.icrane.quickmode.http.HttpError;
 import com.icrane.quickmode.http.OnRequestListener;
 import com.icrane.quickmode.http.OnResponseListener;
-import com.icrane.quickmode.http.RequestMode;
+import com.icrane.quickmode.http.RequestType;
 import com.icrane.quickmode.http.exec.data.packet.AbRequestPacket;
 import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
 import com.icrane.quickmode.http.exec.data.packet.impl.HttpRequestPacket;
@@ -82,7 +82,7 @@ public abstract class AbClientExecutor<T> extends Observable implements Releasab
      */
     public void execute() {
         try {
-            RequestMode requestType = mRequestPacket.getRequestType();
+            RequestType requestType = mRequestPacket.getRequestType();
             // 判断请求类型，进行请求数据
             switch (requestType) {
 

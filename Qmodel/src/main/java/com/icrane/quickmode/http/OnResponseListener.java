@@ -7,7 +7,7 @@ import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
 import java.io.IOException;
 
 @SuppressWarnings("ALL")
-public interface OnResponseListener<T, V> extends IAsyncWritable<T>, IAsyncReadable<V> {
+public interface OnResponseListener<T> extends IAsyncWritable<T>, IAsyncReadable<T> {
 
     /**
      * 处理响应数据

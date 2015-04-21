@@ -3,7 +3,7 @@ package com.icrane.quickmode.http.exec.data.packet;
 import com.icrane.quickmode.cache.CacheType;
 import com.icrane.quickmode.http.HttpDataType;
 import com.icrane.quickmode.http.HttpError;
-import com.icrane.quickmode.http.RequestMode;
+import com.icrane.quickmode.http.RequestType;
 import com.icrane.quickmode.http.exec.data.HttpRequestForm;
 import com.icrane.quickmode.utils.Charset;
 
@@ -189,14 +189,14 @@ public abstract class AbResponsePacket {
      *
      * @return 请求方式
      */
-    public abstract RequestMode getRequestType();
+    public abstract RequestType getRequestType();
 
     /**
      * 设置请求类型
      *
      * @param requestType 请求类型
      */
-    public abstract AbResponsePacket setRequestType(RequestMode requestType);
+    public abstract AbResponsePacket setRequestType(RequestType requestType);
 
     /**
      * 获取错误信息

@@ -1,5 +1,8 @@
 package com.icrane.quickmode.utils.reflect;
 
+import com.icrane.quickmode.model.JSONConvert;
+import com.icrane.quickmode.model.JSONConvertModel;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,7 +14,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /*
  * 反射类，利用反射机制将json反射为对象
@@ -25,10 +27,10 @@ public final class JSONReflector<T> {
     /**
      * 转化为对象
      *
-     * @param jsonObj
-     * @param type
-     * @param f_type
-     * @return
+     * @param jsonObj JSONObject对象
+     * @param type    对象类型
+     * @param f_type  反射类型
+     * @return <T> 返回指定类型的对象
      */
     public static <T> T toModel(JSONObject jsonObj, Type type, AMPlusReflector.ReflectType f_type) {
         T object = null;
@@ -67,10 +69,10 @@ public final class JSONReflector<T> {
     /**
      * 转化为集合
      *
-     * @param jsonArray
-     * @param type
-     * @param f_type
-     * @return
+     * @param jsonArray JSONArray对象
+     * @param type      指定对象类型
+     * @param f_type    反射类型
+     * @return List<T>对象
      */
     public static <T> List<T> toModel(JSONArray jsonArray, Type type,
                                       AMPlusReflector.ReflectType f_type) {
@@ -88,22 +90,33 @@ public final class JSONReflector<T> {
         return objList;
     }
 
-    public static Map<String, Object> toMap(Object obj, AMPlusReflector.ReflectType f_type) {
+    /**
+     * 转换成JSONObject
+     *
+     * @param obj    指定对象
+     * @param f_type 反射类型
+     * @return JSONObject对象
+     */
+    public static JSONObject toModel(Object obj, AMPlusReflector.ReflectType f_type) {
 
         Map<String, Object> objMap = new HashMap<String, Object>();
+        Object object = obj;
+        Field[] fields = AMPlusReflector.getFields(object.getClass(), f_type);
 
-        Field[] fields = AMPlusReflector.getFields(obj.getClass(), f_type);
-        Map<String, Field> fieldsMap = AMPlusReflector
-                .convertFieldsToMap(fields);
-        Set<String> keySet = fieldsMap.keySet();
-        for (String key:keySet) {
+        for (Field field : fields) {
             try {
-                Object value = fieldsMap.get(key).get(obj);
-                objMap.put(key, value);
+                Object value = field.get(object);
+                if (value instanceof JSONConvertModel) {
+                    objMap.put(field.getName(), ((JSONConvert) value).convertToJSON());
+                } else {
+                    objMap.put(field.getName(), value);
+                }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
-        return objMap;
+        JSONObject jsonObject = new JSONObject(objMap);
+
+        return jsonObject;
     }
 }

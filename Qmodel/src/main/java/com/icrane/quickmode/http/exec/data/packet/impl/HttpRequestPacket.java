@@ -2,7 +2,7 @@ package com.icrane.quickmode.http.exec.data.packet.impl;
 
 import com.icrane.quickmode.cache.CacheType;
 import com.icrane.quickmode.http.RequestMethod;
-import com.icrane.quickmode.http.RequestMode;
+import com.icrane.quickmode.http.RequestType;
 import com.icrane.quickmode.http.exec.data.HttpRequestForm;
 import com.icrane.quickmode.http.exec.data.packet.AbRequestPacket;
 import com.icrane.quickmode.utils.Charset;
@@ -48,7 +48,7 @@ public class HttpRequestPacket extends AbRequestPacket {
     /**
      * 请求类型
      */
-    private RequestMode requestType = RequestMode.REQUEST_MODE_CHECKING_CACHE;
+    private RequestType requestType = RequestType.REQUEST_MODE_CHECKING_CACHE;
 
     protected HttpRequestPacket() {
     }
@@ -154,12 +154,12 @@ public class HttpRequestPacket extends AbRequestPacket {
     }
 
     @Override
-    public RequestMode getRequestType() {
+    public RequestType getRequestType() {
         return requestType;
     }
 
     @Override
-    public AbRequestPacket setRequestType(RequestMode requestType) {
+    public AbRequestPacket setRequestType(RequestType requestType) {
         this.requestType = requestType;
         return this;
     }

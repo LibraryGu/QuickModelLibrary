@@ -16,7 +16,7 @@ import org.apache.http.HttpResponse;
 import java.io.IOException;
 
 @SuppressWarnings("ALL")
-public abstract class AsyncClientBasicResponse extends AsyncResponseHandler<HttpResponse, HttpEntity> {
+public abstract class AsyncClientBasicResponse extends AsyncResponseHandler<HttpResponse> {
 
     @Override
     public int getResponseCode(HttpResponse response) throws IOException {
@@ -31,6 +31,7 @@ public abstract class AsyncClientBasicResponse extends AsyncResponseHandler<Http
         // 响应数据包
         AbResponsePacket responsePacket = HttpResponsePacket.create();
         try {
+
             // 获取网络实体
             HttpEntity mHttpEntity = response.getEntity();
             if (CommonUtils.isEmpty(mHttpEntity)) {
@@ -38,8 +39,9 @@ public abstract class AsyncClientBasicResponse extends AsyncResponseHandler<Http
                         HttpError.ERROR_STR, responsePacket, "HttpEntity is null!");
                 return CommonUtils.isEmpty(responsePacket) ? HttpResponsePacket.create() : responsePacket;
             }
+
             // 读取数据
-            Object responseContent = onRead(executor, mHttpEntity);
+            Object responseContent = onRead(executor, response);
 
             // 将数据类型，数据长度，数据实体填入HttpRespDataPacket中
             responsePacket = HttpResponsePacket.create()
