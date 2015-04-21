@@ -1,4 +1,4 @@
-package com.icrane.quickmode.http.handler.connection;
+package com.icrane.quickmode.http.handler.conn;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,10 +7,10 @@ import com.icrane.quickmode.http.HttpDataType;
 import com.icrane.quickmode.http.HttpError;
 import com.icrane.quickmode.http.exec.client.AbClientExecutor;
 import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
-import com.icrane.quickmode.http.handler.IAsyncResponseCallback;
+import com.icrane.quickmode.http.IAsyncResponseCallback;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.HttpURLConnection;
 
 /**
  * Created by gujiwen on 15/3/19.
@@ -19,8 +19,8 @@ import java.io.InputStream;
 public abstract class AsyncURLConnImageResponse extends AsyncURLConnByteResponse implements IAsyncResponseCallback<Bitmap> {
 
     @Override
-    public Object onRead(AbClientExecutor executor, InputStream is, int contentLength) throws IOException {
-        return BitmapFactory.decodeStream(is);
+    public Object onRead(AbClientExecutor executor, HttpURLConnection urlConnection) throws IOException {
+        return BitmapFactory.decodeStream(urlConnection.getInputStream());
     }
 
     @Override

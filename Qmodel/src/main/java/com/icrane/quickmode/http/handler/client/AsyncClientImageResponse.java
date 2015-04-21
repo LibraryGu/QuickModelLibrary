@@ -1,4 +1,4 @@
-package com.icrane.quickmode.http.handler.httpclient;
+package com.icrane.quickmode.http.handler.client;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,7 +7,7 @@ import com.icrane.quickmode.http.HttpDataType;
 import com.icrane.quickmode.http.HttpError;
 import com.icrane.quickmode.http.exec.client.AbClientExecutor;
 import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
-import com.icrane.quickmode.http.handler.IAsyncResponseCallback;
+import com.icrane.quickmode.http.IAsyncResponseCallback;
 
 import org.apache.http.HttpEntity;
 

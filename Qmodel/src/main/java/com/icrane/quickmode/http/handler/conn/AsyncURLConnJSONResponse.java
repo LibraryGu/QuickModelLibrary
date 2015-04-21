@@ -1,18 +1,18 @@
-package com.icrane.quickmode.http.handler.httpclient;
+package com.icrane.quickmode.http.handler.conn;
 
 import com.icrane.quickmode.http.HttpDataType;
 import com.icrane.quickmode.http.HttpError;
 import com.icrane.quickmode.http.exec.client.HttpExecutorManager;
 import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
 import com.icrane.quickmode.http.exec.data.packet.impl.HttpResponsePacket;
-import com.icrane.quickmode.http.handler.IAsyncResponseCallback;
+import com.icrane.quickmode.http.IAsyncResponseCallback;
 import com.icrane.quickmode.utils.common.CommonUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 @SuppressWarnings("ALL")
-public abstract class AsyncClientJSONResponse extends AsyncClientCommonResponse implements IAsyncResponseCallback<JSONObject> {
+public abstract class AsyncURLConnJSONResponse extends AsyncURLConnCommonResponse implements IAsyncResponseCallback<JSONObject> {
 
     @Override
     public Object onReceive(AbResponsePacket response) {

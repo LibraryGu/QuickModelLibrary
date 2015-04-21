@@ -1,4 +1,4 @@
-package com.icrane.quickmode.http.handler;
+package com.icrane.quickmode.http;
 
 import com.icrane.quickmode.http.HttpError;
 

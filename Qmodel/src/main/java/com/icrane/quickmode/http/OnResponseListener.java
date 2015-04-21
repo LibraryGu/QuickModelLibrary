@@ -4,8 +4,10 @@ package com.icrane.quickmode.http;
 import com.icrane.quickmode.http.exec.client.AbClientExecutor;
 import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
 
+import java.io.IOException;
+
 @SuppressWarnings("ALL")
-public interface OnResponseListener<T> {
+public interface OnResponseListener<T, V> extends IAsyncWritable<T>, IAsyncReadable<V> {
 
     /**
      * 处理响应数据
@@ -15,6 +17,15 @@ public interface OnResponseListener<T> {
      * @return 返回数据包
      */
     public AbResponsePacket handleResponse(AbClientExecutor executor, T response);
+
+    /**
+     * 打包
+     *
+     * @param executor 进行网络请求的执行对象
+     * @param response 进行网络请求得到的响应对象
+     * @return
+     */
+    public AbResponsePacket onPacked(AbClientExecutor executor, T response) throws IOException;
 
     /**
      * 请求成功,接收数据包

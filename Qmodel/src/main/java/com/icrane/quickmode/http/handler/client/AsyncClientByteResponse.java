@@ -1,4 +1,4 @@
-package com.icrane.quickmode.http.handler.httpclient;
+package com.icrane.quickmode.http.handler.client;
 
 import com.icrane.quickmode.http.exec.client.AbClientExecutor;
 import com.icrane.quickmode.utils.common.Streams;

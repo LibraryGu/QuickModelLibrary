@@ -45,6 +45,7 @@ public abstract class AbClientExecutor<T> extends Observable implements Releasab
         public AbResponsePacket doResponse(AbClientExecutor executor, T response) {
             return executor.getOnResponseListener().handleResponse(executor, response);
         }
+
     };
 
     /**
