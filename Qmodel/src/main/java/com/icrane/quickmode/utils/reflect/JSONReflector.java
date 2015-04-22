@@ -2,6 +2,7 @@ package com.icrane.quickmode.utils.reflect;
 
 import com.icrane.quickmode.model.JSONConvert;
 import com.icrane.quickmode.model.JSONConvertModel;
+import com.icrane.quickmode.utils.common.CommonUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,8 +36,8 @@ public final class JSONReflector<T> {
      * @param f_type     反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰。
      * @param <T>        泛型
      * @return 执行泛型类型T的对象
-     * @throws JSONException          JSON异常
-     * @throws IllegalAccessException 参数异常
+     * @throws org.json.JSONException           {@link org.json.JSONException}
+     * @throws java.lang.IllegalAccessException {@link java.lang.IllegalAccessException}
      */
     public static <T> T toModel(JSONObject jsonObject, Type type, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
 
@@ -72,8 +73,8 @@ public final class JSONReflector<T> {
      * @param f_type    反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @param <T>       泛型
      * @return 指定泛型T对象的一个列表对象
-     * @throws JSONException          JSON异常
-     * @throws IllegalAccessException 参数异常
+     * @throws org.json.JSONException           {@link org.json.JSONException}
+     * @throws java.lang.IllegalAccessException {@link java.lang.IllegalAccessException}
      */
     public static <T> List<T> toModel(JSONArray jsonArray, Type type, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
 
@@ -93,13 +94,13 @@ public final class JSONReflector<T> {
      * @param jsonObject 指定对象
      * @param f_type     反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return Map对象
-     * @throws JSONException          JSON异常
-     * @throws IllegalAccessException 参数异常
+     * @throws org.json.JSONException           {@link org.json.JSONException}
+     * @throws java.lang.IllegalAccessException {@link java.lang.IllegalAccessException}
      */
     public static Map<String, Object> toModel(JSONObject jsonObject, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
 
         if (jsonObject == null) throw new NullPointerException("JSONObject is null");
-        Map<String, Object> categorys = new HashMap<String, Object>();
+        Map<String, Object> category = new HashMap<String, Object>();
         Iterator<String> keys = jsonObject.keys();
         while (keys.hasNext()) {
             String key = keys.next();
@@ -109,9 +110,9 @@ public final class JSONReflector<T> {
             } else if (value instanceof JSONArray) {
                 value = toModel((JSONObject) value, f_type);
             }
-            categorys.put(key, value);
+            category.put(key, value);
         }
-        return categorys;
+        return category;
 
     }
 
@@ -121,23 +122,25 @@ public final class JSONReflector<T> {
      * @param object 指定对象
      * @param f_type 反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return JSONObject对象
-     * @throws java.lang.IllegalAccessException 参数异常
+     * @throws java.lang.IllegalAccessException {@link java.lang.IllegalAccessException}
      */
     public static JSONObject toJSONObject(Object object, AMPlusReflector.ReflectType f_type) throws IllegalAccessException {
 
         if (object == null) throw new NullPointerException("object is null");
-        Map<String, Object> categorys = new HashMap<String, Object>();
+        Map<String, Object> category = new HashMap<String, Object>();
         Field[] fields = AMPlusReflector.getFields(object.getClass(), f_type);
 
         for (Field field : fields) {
             Object value = field.get(object);
-            Object result = (value instanceof JSONConvertModel) ?
-                    categorys.put(field.getName(), ((JSONConvert) value).convertToJSONObject())
-                    : categorys.put(field.getName(), toJSONObject(value, f_type));
+            if (value instanceof JSONConvertModel) {
+                category.put(field.getName(), ((JSONConvert) value).convertToJSONObject());
+            } else {
+                category.put(field.getName(), value);
+            }
         }
-        JSONObject jsonObject = new JSONObject(categorys);
-
+        JSONObject jsonObject = new JSONObject(category);
         return jsonObject;
+
     }
 
     /**
@@ -146,24 +149,27 @@ public final class JSONReflector<T> {
      * @param object 指定对象
      * @param f_type 反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return JSONArray对象
-     * @throws java.lang.IllegalAccessException 参数异常
+     * @throws java.lang.IllegalAccessException {@link java.lang.IllegalAccessException}
      */
     public static JSONArray toJSONArray(Object object, AMPlusReflector.ReflectType f_type) throws IllegalAccessException {
 
         if (object == null) throw new NullPointerException("object is null");
-
-        List<Object> categorys = new ArrayList<Object>();
+        List<Object> category = new ArrayList<Object>();
         Field[] fields = AMPlusReflector.getFields(object.getClass(), f_type);
 
         for (Field field : fields) {
             Object value = field.get(object);
-            boolean result = (value instanceof JSONConvertModel) ?
-                    categorys.add(((JSONConvert) value).convertToJSONObject())
-                    : categorys.add(toJSONObject(value, f_type));
+            if (!CommonUtils.isEmpty(value)) {
+                if (value instanceof JSONConvertModel) {
+                    category.add(((JSONConvert) value).convertToJSONObject());
+                } else {
+                    category.add(value);
+                }
+            }
         }
-        JSONArray array = new JSONArray(categorys);
-
+        JSONArray array = new JSONArray(category);
         return array;
+
     }
 
 

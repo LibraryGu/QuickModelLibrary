@@ -175,7 +175,7 @@ public final class Dimens implements Releasable {
      * @param source  资源属性名称
      * @param clsName 类全名
      * @return 对应属性的值
-     * @throws ClassNotFoundException 找不到类型异常
+     * @throws java.lang.ClassNotFoundException {@link java.lang.ClassNotFoundException}
      */
     public static int getInternalDimenResourcesId(String source, String clsName)
             throws ClassNotFoundException {

@@ -6,7 +6,6 @@ package com.icrane.quickmode.utils;
  * @author Administrator
  * 
  */
-@SuppressWarnings("ALL")
 public enum Charset {
 
 	UTF_8(0), GB_2312(1), GBK(2), BIG_5(3), ISO_8859_1(4), GB_18030(5);

@@ -23,7 +23,7 @@ public interface OnResponseListener<T> extends IAsyncWritable<T>, IAsyncReadable
      * @param executor 进行网络请求的执行对象
      * @param response 进行网络请求得到的响应对象
      * @return 响应数据包
-     * @throws IOException IO异常
+     * @throws IOException {@link java.io.IOException}
      */
     public AbResponsePacket onPacked(AbClientExecutor executor, T response) throws IOException;
 

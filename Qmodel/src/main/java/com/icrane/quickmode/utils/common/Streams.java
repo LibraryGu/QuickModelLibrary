@@ -27,7 +27,7 @@ public final class Streams {
      * @param is          输入流
      * @param charsetName 编码名称
      * @return 返回BufferedReader
-     * @throws java.io.UnsupportedEncodingException 不支持编码异常
+     * @throws java.io.UnsupportedEncodingException {@link java.io.UnsupportedEncodingException}
      */
     public static BufferedReader obtainBufferedReader(InputStream is,
                                                       Charset charsetName) throws UnsupportedEncodingException {
@@ -41,7 +41,7 @@ public final class Streams {
      * @param reader      输入流
      * @param charsetName 字符编码
      * @return 返回BufferedReader
-     * @throws java.io.UnsupportedEncodingException 不支持编码异常
+     * @throws java.io.UnsupportedEncodingException {@link java.io.UnsupportedEncodingException}
      */
     public static BufferedReader obtainBufferedReader(Reader reader,
                                                       Charset charsetName) throws UnsupportedEncodingException {
@@ -53,7 +53,7 @@ public final class Streams {
      *
      * @param is 输入流
      * @return 返回BufferedReader
-     * @throws java.io.UnsupportedEncodingException 不支持编码异常
+     * @throws java.io.UnsupportedEncodingException {@link java.io.UnsupportedEncodingException}
      */
     public static BufferedReader obtainBufferedReader(InputStream is)
             throws UnsupportedEncodingException {
@@ -65,7 +65,7 @@ public final class Streams {
      *
      * @param filePath 文件路径
      * @return 返回FileReader
-     * @throws java.io.FileNotFoundException 没找到指定文件异常
+     * @throws java.io.FileNotFoundException {@link java.io.FileNotFoundException}
      */
     public static FileInputStream obtainFileInputStream(String filePath)
             throws FileNotFoundException {
@@ -77,7 +77,7 @@ public final class Streams {
      *
      * @param filePath 文件路径
      * @return 返回FileReader
-     * @throws java.io.FileNotFoundException 没找到指定文件异常
+     * @throws java.io.FileNotFoundException {@link java.io.FileNotFoundException}
      */
     public static FileReader obtainFileReader(String filePath)
             throws FileNotFoundException {
@@ -129,7 +129,7 @@ public final class Streams {
      * @param filePath 文件路径
      * @param fileName 文件名称
      * @return FileOutputStream 文件输出流
-     * @throws java.io.IOException IO异常
+     * @throws java.io.IOException {@link java.io.IOException}
      */
     public static FileOutputStream obtainFileOutputStream(String filePath, String fileName) throws IOException {
         File file = new File(filePath);
@@ -144,7 +144,7 @@ public final class Streams {
      *
      * @param filePath 文件路径
      * @return FileWriter 文件写入流
-     * @throws java.io.IOException IO异常
+     * @throws java.io.IOException {@link java.io.IOException}
      */
     public static FileWriter obtainFileWriter(String filePath)
             throws IOException {

@@ -5,7 +5,6 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.icrane.quickmode.app.effect.SlideEffect;
 
@@ -215,25 +214,53 @@ public interface ActionBar {
     public void setTitleMenu(ActionBarMenu titleMenu);
 
     /**
+     * 设置内容视图
+     *
+     * @param layoutID 资源id
+     */
+    public void setActionBarContentView(int layoutID);
+
+    /**
+     * 设置内容视图
+     *
+     * @param layoutView 资源id
+     */
+    public void setActionBarContentView(View layoutView);
+
+    /**
+     * 获取ActionBar的内容视图
+     *
+     * @return ActionBar的内容视图
+     */
+    public View getActionBarContentView();
+
+    /**
+     * 获取ActionBar对象
+     *
+     * @return ActionBar对象
+     */
+    public ViewGroup getActionBar();
+
+    /**
      * 获取左边区域视图
      *
      * @return 左边区域视图
      */
-    public LinearLayout getLeftArea();
+    public ViewGroup getLeftArea();
 
     /**
      * 获取居中区域视图
      *
      * @return 居中区域视图
      */
-    public LinearLayout getCenterArea();
+    public ViewGroup getCenterArea();
 
     /**
      * 获取右边区域视图
      *
      * @return 右边区域视图
      */
-    public LinearLayout getRightArea();
+    public ViewGroup getRightArea();
 
     /**
      * 是否打开了返回键显示

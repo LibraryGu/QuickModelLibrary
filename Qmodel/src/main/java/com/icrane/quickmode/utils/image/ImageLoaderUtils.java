@@ -21,7 +21,7 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 import java.io.File;
 
 /**
- * Created by gujiwen on 15/4/12.
+ * 这个类内部集成了ImageLoader，是一个ImageLoader的工具类，可以使用这个工具为ImageView加载图片。
  */
 public final class ImageLoaderUtils implements Releasable {
 

@@ -88,8 +88,8 @@ public final class Storage implements Releasable {
      * @param filePath    文件路径
      * @param charsetName 内容编码
      * @return 返回文件内容
-     * @throws java.io.FileNotFoundException        找不到文件异常
-     * @throws java.io.UnsupportedEncodingException 不支持编码异常
+     * @throws java.io.FileNotFoundException        {@link java.io.FileNotFoundException}
+     * @throws java.io.UnsupportedEncodingException {@link java.io.UnsupportedEncodingException}
      */
     public String readToFile(String filePath, Charset charsetName)
             throws FileNotFoundException, UnsupportedEncodingException {
@@ -101,7 +101,7 @@ public final class Storage implements Releasable {
      *
      * @param is 输入流
      * @return 返回文件内容
-     * @throws java.io.UnsupportedEncodingException 不支持编码异常
+     * @throws java.io.UnsupportedEncodingException {@link java.io.UnsupportedEncodingException}
      */
     public String readToFile(InputStream is)
             throws UnsupportedEncodingException {
@@ -115,10 +115,9 @@ public final class Storage implements Releasable {
      * @param fileName   文件名
      * @param accessMode 允许读取的模式
      * @return 输入流
-     * @throws java.io.IOException IO异常
+     * @throws java.io.IOException {@link java.io.IOException}
      */
-    public InputStream readToAsset(Context context, String fileName,
-                                   int accessMode) throws IOException {
+    public InputStream readToAsset(Context context, String fileName, int accessMode) throws IOException {
         AssetManager assetManager = context.getAssets();
         return assetManager.open(fileName, accessMode);
     }
@@ -150,8 +149,8 @@ public final class Storage implements Releasable {
      * @param accessMode  允许读取方式
      * @param charsetName 字符编码
      * @return 返回读取的内容
-     * @throws java.io.UnsupportedEncodingException 不支持编码异常
-     * @throws java.io.IOException                  IO异常
+     * @throws java.io.UnsupportedEncodingException {@link java.io.UnsupportedEncodingException}
+     * @throws java.io.IOException                  {@link java.io.IOException}
      */
     public String readToAssetFile(Context context, String fileName,
                                   int accessMode, Charset charsetName)
@@ -176,7 +175,7 @@ public final class Storage implements Releasable {
      * @param filePath 写入文件的路径
      * @param content  写入文件的内容
      * @return true表示写入成功，反之返回false
-     * @throws java.io.IOException IO异常
+     * @throws java.io.IOException {@link java.io.IOException}
      */
     public boolean writeToFile(String filePath, String content)
             throws IOException {
@@ -192,7 +191,7 @@ public final class Storage implements Releasable {
      * @param is       输入流
      * @param size     每次读取的缓冲大小
      * @param owl      写入时监听写入过程
-     * @throws java.io.IOException IO异常
+     * @throws java.io.IOException {@link java.io.IOException}
      */
     public void writeToFile(String filePath, String fileName, InputStream is, int size, OnWriteListener owl) throws IOException {
         int count = 0;

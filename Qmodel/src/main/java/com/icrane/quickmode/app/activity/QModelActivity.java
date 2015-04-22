@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.icrane.quickmode.app.QModel;
 import com.icrane.quickmode.app.fragment.utils.FragmentGenerator;
 import com.icrane.quickmode.app.fragment.utils.FragmentHandler;
+import com.icrane.quickmode.utils.common.CommonUtils;
 import com.icrane.quickmode.utils.image.ImageLoaderUtils;
 import com.icrane.quickmode.widget.actionbar.ActionBar;
 import com.icrane.quickmode.widget.actionbar.ActionBarLayout;
@@ -213,11 +215,14 @@ public class QModelActivity extends FragmentActivity {
 
     @Override
     public void setContentView(int layoutResID) {
+
         this.mQModelActionBar = new ActionBarLayout(this);
-        this.basicContentView = (ViewGroup) getLayoutInflater().inflate(
-                layoutResID, this.mQModelActionBar, false);
-        this.mQModelActionBar.addView(this.basicContentView);
+        this.mQModelActionBar.setActionBarContentView(layoutResID);
+        View actionBarContentView = this.mQModelActionBar.getActionBarContentView();
+        this.basicContentView = (ViewGroup) ((CommonUtils.isEmpty(actionBarContentView)) ? getLayoutInflater()
+                .inflate(layoutResID, this.mQModelActionBar, false) : actionBarContentView);
         super.setContentView(this.mQModelActionBar);
+
     }
 
     /**

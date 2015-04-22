@@ -47,8 +47,8 @@ install {
                 }
                 developers {
                     developer {
-                        id 'gu_crane'
-                        name 'Gujiwen'
+                        id 'gujiwen'
+                        name 'gujiwen'
                         email 'gu_crane@163.com'
                     }
                 }
@@ -89,7 +89,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "qmodel-core"
+        name = "quickmodel-core"                // project name in jcenter
         websiteUrl = SITE_URL
         vcsUrl = GIT_URL
         licenses = ["Apache-2.0"]

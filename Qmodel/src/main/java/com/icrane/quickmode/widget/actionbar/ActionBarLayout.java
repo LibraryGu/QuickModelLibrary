@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.icrane.quickmode.R;
@@ -25,6 +26,7 @@ import com.icrane.quickmode.widget.ViewLayoutParams;
 /**
  * Created by gujiwen on 15/4/16.
  */
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class ActionBarLayout extends ViewGroup implements ActionBar, View.OnClickListener {
 
     private static final int ACTIONBAR_DEFAULT_HEIGHT = 48;
@@ -35,13 +37,18 @@ public class ActionBarLayout extends ViewGroup implements ActionBar, View.OnClic
     private SparseArray<View> mCenterAreaArray = new SparseArray<View>();
     private SparseArray<View> mRightAreaArray = new SparseArray<View>();
 
+    private int layoutID;
+    private View mActionBarContentView;
+
     private LayoutInflater mInflater;
     private View mActionBarRoot;
 
     private ActionBarMenu backMenu;
     private ActionBarMenu titleMenu;
 
+    private FrameLayout mActionBarContainer;
     private LinearLayout mActionBar;
+
     private LinearLayout mLeftArea;
     private LinearLayout mCenterArea;
     private LinearLayout mRightArea;
@@ -129,6 +136,8 @@ public class ActionBarLayout extends ViewGroup implements ActionBar, View.OnClic
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mActionBarRoot = mInflater.inflate(R.layout.actionbar_layout, this, false);
         mActionBar = (LinearLayout) mActionBarRoot.findViewById(R.id.actionBar);
+        mActionBarContainer = (FrameLayout) mActionBarRoot.findViewById(R.id.actionBarContainer);
+
         this.addView(mActionBarRoot);
         this.generateArea(mActionBarRoot);
         this.generateDefaultMenu();
@@ -371,17 +380,40 @@ public class ActionBarLayout extends ViewGroup implements ActionBar, View.OnClic
     }
 
     @Override
-    public LinearLayout getLeftArea() {
+    public void setActionBarContentView(int layoutID) {
+        this.layoutID = layoutID;
+        this.mActionBarContentView = this.getLayoutInflater().inflate(this.layoutID, mActionBarContainer, false);
+        this.setActionBarContentView(this.mActionBarContentView);
+    }
+
+    @Override
+    public void setActionBarContentView(View layoutView) {
+        this.mActionBarContentView = layoutView;
+        this.mActionBarContainer.addView(this.mActionBarContentView);
+    }
+
+    @Override
+    public View getActionBarContentView() {
+        return mActionBarContentView;
+    }
+
+    @Override
+    public ViewGroup getActionBar() {
+        return mActionBar;
+    }
+
+    @Override
+    public ViewGroup getLeftArea() {
         return mLeftArea;
     }
 
     @Override
-    public LinearLayout getCenterArea() {
+    public ViewGroup getCenterArea() {
         return mCenterArea;
     }
 
     @Override
-    public LinearLayout getRightArea() {
+    public ViewGroup getRightArea() {
         return mRightArea;
     }
 

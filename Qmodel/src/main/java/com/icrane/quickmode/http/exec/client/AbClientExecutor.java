@@ -124,8 +124,8 @@ public abstract class AbClientExecutor<T> extends Observable implements Releasab
      * 执行请求操作
      *
      * @return 返回响应包对象
-     * @throws org.apache.http.client.ClientProtocolException 客户端异常
-     * @throws java.io.IOException                            IO异常
+     * @throws org.apache.http.client.ClientProtocolException {@link org.apache.http.client.ClientProtocolException}
+     * @throws java.io.IOException                            {@link java.io.IOException}
      */
     protected abstract AbResponsePacket requestNetwork() throws ClientProtocolException, IOException;
 

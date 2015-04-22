@@ -223,7 +223,7 @@ public final class HttpUtils {
      * @param method 请求方法
      * @param form   请求表单
      * @return 请求对象
-     * @throws java.io.UnsupportedEncodingException 不支持编码异常
+     * @throws java.io.UnsupportedEncodingException {@link java.io.UnsupportedEncodingException}
      */
     public static HttpRequestBase switchRequestBase(String uri, RequestMethod method, HttpRequestForm form) throws UnsupportedEncodingException {
         return (method == RequestMethod.GET) ? newHttpGet(uri, form) : newHttpPost(uri, form);

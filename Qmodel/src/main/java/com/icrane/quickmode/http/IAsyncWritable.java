@@ -14,7 +14,7 @@ public interface IAsyncWritable<T> {
      *
      * @param executor HTTP执行者
      * @param writable 可写入的数据
-     * @throws IOException IO异常
+     * @throws IOException {@link java.io.IOException}
      */
     public void onWrite(AbClientExecutor executor, T writable) throws IOException;
 }

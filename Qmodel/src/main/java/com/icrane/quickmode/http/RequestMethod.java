@@ -15,6 +15,11 @@ public enum RequestMethod {
         this.methodName = method;
     }
 
+    /**
+     * 获取字符串表示代表
+     *
+     * @return 字符串表示代表
+     */
     public String obtain() {
         return methodName;
     }

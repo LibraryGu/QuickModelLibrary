@@ -85,8 +85,8 @@ public class HttpURLConnectionExecutor extends AbClientExecutor<HttpURLConnectio
      * @param form 请求表单
      * @param uri  地址
      * @return HttpURLConnection
-     * @throws java.net.ProtocolException     Http协议异常
-     * @throws java.net.MalformedURLException MalformedURLException异常
+     * @throws java.net.ProtocolException     {@link java.net.ProtocolException}
+     * @throws java.net.MalformedURLException {@link java.net.MalformedURLException}
      */
     protected HttpURLConnection execHttpURLConnection(HttpRequestForm form, String uri) throws ProtocolException, MalformedURLException {
 
@@ -106,8 +106,8 @@ public class HttpURLConnectionExecutor extends AbClientExecutor<HttpURLConnectio
      *
      * @param uri    地址
      * @param method 请求方法
-     * @throws java.net.ProtocolException     Http协议异常
-     * @throws java.net.MalformedURLException MalformedURLException异常
+     * @throws java.net.ProtocolException     {@link java.net.ProtocolException}
+     * @throws java.net.MalformedURLException {@link java.net.MalformedURLException}
      */
     protected void reset(String uri, RequestMethod method) throws MalformedURLException, ProtocolException {
         generateDefaultHttpURLConnection(new URL(uri));

@@ -15,7 +15,7 @@ public abstract class AsyncClientByteResponse extends AsyncClientBasicResponse {
     /**
      * 默认缓冲大小
      */
-    public static final int DEFAULT_BUFFSIZE = 1024 * 1024;
+    public static final int DEFAULT_BUFF_SIZE = 1024 * 1024;
 
     @Override
     public Object onRead(AbClientExecutor executor, HttpResponse response) throws IOException {

@@ -47,7 +47,7 @@ public final class AlgorithmUtils {
      * @param charset 字符编码
      * @param flags   加密方式
      * @return 返回加密后的字符串
-     * @throws java.io.UnsupportedEncodingException 不支持编码异常
+     * @throws java.io.UnsupportedEncodingException {@link java.io.UnsupportedEncodingException}
      */
     public static String encodeBase64(String str, String charset, int flags)
             throws UnsupportedEncodingException {
@@ -61,7 +61,7 @@ public final class AlgorithmUtils {
      * @param charset   字符编码
      * @param flags     解密方式
      * @return 返回加密后的字符串
-     * @throws java.io.UnsupportedEncodingException 不支持编码异常
+     * @throws java.io.UnsupportedEncodingException {@link java.io.UnsupportedEncodingException}
      */
     public static String decodeBase64(String encodeStr, String charset,
                                       int flags) throws UnsupportedEncodingException {

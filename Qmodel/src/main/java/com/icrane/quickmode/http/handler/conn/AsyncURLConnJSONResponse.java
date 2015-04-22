@@ -82,7 +82,7 @@ public abstract class AsyncURLConnJSONResponse extends AsyncURLConnCommonRespons
      *
      * @param jsonStr 读取回来的json字符串
      * @return JSONObject对象
-     * @throws org.json.JSONException JSON异常
+     * @throws org.json.JSONException {@link org.json.JSONException}
      */
     protected JSONObject convertToJSONObject(String jsonStr)
             throws JSONException {

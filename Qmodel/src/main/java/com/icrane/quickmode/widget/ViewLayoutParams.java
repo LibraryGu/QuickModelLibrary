@@ -28,10 +28,25 @@ public enum ViewLayoutParams {
         this.h = height;
     }
 
+    /**
+     * 获取对应类型的LayoutParams对象
+     *
+     * @param type LayoutParams对象类型
+     * @param <T>  泛型
+     * @return LayoutParams对象
+     */
     public <T extends LayoutParams> T obtain(Type type) {
         return obtain(type, w, h);
     }
 
+    /**
+     * 获取对应类型的LayoutParams对象
+     *
+     * @param type LayoutParams对象类型
+     * @param obj  参数数组
+     * @param <T>  泛型
+     * @return LayoutParams对象
+     */
     public <T extends LayoutParams> T obtain(Type type, Object... obj) {
         Class<?> typeClass = (Class<?>) type;
         T layoutParams = null;
