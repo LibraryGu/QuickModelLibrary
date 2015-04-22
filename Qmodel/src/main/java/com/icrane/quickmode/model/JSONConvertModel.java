@@ -1,7 +1,5 @@
 package com.icrane.quickmode.model;
 
-import android.os.Parcel;
-
 import com.icrane.quickmode.utils.reflect.AMPlusReflector;
 import com.icrane.quickmode.utils.reflect.JSONReflector;
 
@@ -12,11 +10,7 @@ import org.json.JSONObject;
  * Created by gujiwen on 15/4/21.
  */
 @SuppressWarnings("ALL")
-public abstract class JSONConvertModel extends ParcelableModel implements JSONConvert {
-
-    public JSONConvertModel(Parcel source) {
-        super(source);
-    }
+public abstract class JSONConvertModel implements JSONConvert {
 
     @Override
     public JSONObject convertToJSONObject() throws IllegalAccessException {
