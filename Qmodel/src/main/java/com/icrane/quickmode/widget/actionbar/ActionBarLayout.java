@@ -403,17 +403,17 @@ public class ActionBarLayout extends ViewGroup implements ActionBar, View.OnClic
     }
 
     @Override
-    public ViewGroup getLeftArea() {
+    public LinearLayout getLeftArea() {
         return mLeftArea;
     }
 
     @Override
-    public ViewGroup getCenterArea() {
+    public LinearLayout getCenterArea() {
         return mCenterArea;
     }
 
     @Override
-    public ViewGroup getRightArea() {
+    public LinearLayout getRightArea() {
         return mRightArea;
     }
 

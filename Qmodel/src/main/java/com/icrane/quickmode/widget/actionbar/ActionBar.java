@@ -5,6 +5,7 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.icrane.quickmode.app.effect.SlideEffect;
 
@@ -246,21 +247,21 @@ public interface ActionBar {
      *
      * @return 左边区域视图
      */
-    public ViewGroup getLeftArea();
+    public LinearLayout getLeftArea();
 
     /**
      * 获取居中区域视图
      *
      * @return 居中区域视图
      */
-    public ViewGroup getCenterArea();
+    public LinearLayout getCenterArea();
 
     /**
      * 获取右边区域视图
      *
      * @return 右边区域视图
      */
-    public ViewGroup getRightArea();
+    public LinearLayout getRightArea();
 
     /**
      * 是否打开了返回键显示
