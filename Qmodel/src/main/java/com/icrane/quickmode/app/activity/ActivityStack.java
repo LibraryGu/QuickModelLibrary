@@ -15,7 +15,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-@SuppressWarnings("ALL")
 public final class ActivityStack implements Releasable {
 
     private int size = 0;
@@ -65,6 +64,8 @@ public final class ActivityStack implements Releasable {
 
     /**
      * 弹出activity
+     *
+     * @param ac Activity对象
      */
     public void pop(final Activity ac) {
         mStackLock.callback(reentrantLock, new StackLock.LockCallback() {
@@ -80,6 +81,8 @@ public final class ActivityStack implements Releasable {
 
     /**
      * 移除所有Activity
+     *
+     * @return true弹出成功，false则失败
      */
     public boolean popAll() {
         mStackLock.callback(reentrantLock, new StackLock.LockCallback() {

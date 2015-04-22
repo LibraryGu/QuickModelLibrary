@@ -11,7 +11,6 @@ import com.icrane.quickmode.utils.common.CommonUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-@SuppressWarnings("ALL")
 public abstract class AsyncURLConnJSONResponse extends AsyncURLConnCommonResponse implements IAsyncResponseCallback<JSONObject> {
 
     @Override
@@ -83,7 +82,7 @@ public abstract class AsyncURLConnJSONResponse extends AsyncURLConnCommonRespons
      *
      * @param jsonStr 读取回来的json字符串
      * @return JSONObject对象
-     * @throws org.json.JSONException
+     * @throws org.json.JSONException JSON异常
      */
     protected JSONObject convertToJSONObject(String jsonStr)
             throws JSONException {

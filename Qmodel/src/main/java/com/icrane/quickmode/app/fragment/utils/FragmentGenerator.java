@@ -9,7 +9,6 @@ import com.icrane.quickmode.app.Releasable;
 import com.icrane.quickmode.app.fragment.QModelFragment;
 import com.icrane.quickmode.utils.common.CommonUtils;
 
-@SuppressWarnings("ALL")
 public final class FragmentGenerator implements Releasable {
 
     private static FragmentGenerator fragmentGenerator = null;

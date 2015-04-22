@@ -53,8 +53,8 @@ public abstract class BasicImageView extends ImageView {
     /**
      * 绘制新层到当前位图中
      *
-     * @param bitmap
-     * @return
+     * @param bitmap Bitmap位图
+     * @return Bitmap位图
      */
     protected Bitmap drawToBitmap(Bitmap bitmap) {
 
@@ -82,7 +82,7 @@ public abstract class BasicImageView extends ImageView {
     /**
      * 设置来自于URL的图片
      *
-     * @param url
+     * @param url 从Url中读取
      */
     public void setFromURLImage(String url) {
         ImageLoaderUtils.getDefaultImageLoaderUtils().getImageLoader().displayImage(url, this);
@@ -91,7 +91,7 @@ public abstract class BasicImageView extends ImageView {
     /**
      * 绘制真实图片
      *
-     * @param canvas
+     * @param canvas 画布
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void drawRealImage(Canvas canvas) {
@@ -109,8 +109,8 @@ public abstract class BasicImageView extends ImageView {
     /**
      * 绘制真实图片
      *
-     * @param canvas
-     * @param bitmapDrawable
+     * @param canvas         画布
+     * @param bitmapDrawable BitmapDrawable对象
      */
     protected void drawRealImage(Canvas canvas, Drawable bitmapDrawable) {
         // 获取设置的真实位图
@@ -125,7 +125,7 @@ public abstract class BasicImageView extends ImageView {
     /**
      * 获取位图对象
      *
-     * @return
+     * @return 位图对象
      */
     public Bitmap getBitmap() {
         return realBitmap;
@@ -134,7 +134,7 @@ public abstract class BasicImageView extends ImageView {
     /**
      * 设置位图对象
      *
-     * @param realBitmap
+     * @param realBitmap 真实位图
      */
     public void setBitmap(Bitmap realBitmap) {
         this.realBitmap = realBitmap;
@@ -143,7 +143,7 @@ public abstract class BasicImageView extends ImageView {
     /**
      * 获取PorterDuffXfermode
      *
-     * @return
+     * @return PorterDuffXfermode对象
      */
     protected PorterDuffXfermode getPorterDuffXfermode() {
         return mPorterDuffXfermode;
@@ -152,7 +152,7 @@ public abstract class BasicImageView extends ImageView {
     /**
      * 设置PorterDuffXfermode
      *
-     * @param xfermode
+     * @param xfermode PorterDuffXfermode对象
      */
     protected void setPorterDuffXfermode(PorterDuffXfermode xfermode) {
         this.mPorterDuffXfermode = xfermode;
@@ -161,11 +161,11 @@ public abstract class BasicImageView extends ImageView {
     /**
      * 绘制
      *
-     * @param canvas
-     * @param rectF
-     * @param paint
+     * @param canvas 画布
+     * @param rectF  float型矩形
+     * @param rect   矩形
+     * @param paint  画笔
      */
-    public abstract void drawTo(Canvas canvas, RectF rectF, Rect rect,
-                                Paint paint);
+    public abstract void drawTo(Canvas canvas, RectF rectF, Rect rect, Paint paint);
 
 }

@@ -28,7 +28,6 @@ import org.apache.http.params.HttpParams;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings("ALL")
 public class HttpClientExecutor extends AbClientExecutor<HttpResponse> {
 
     // 客户端对象
@@ -75,8 +74,9 @@ public class HttpClientExecutor extends AbClientExecutor<HttpResponse> {
      *
      * @param form 请求表单
      * @param uri  请求地址
-     * @throws org.apache.http.client.ClientProtocolException
-     * @throws java.io.IOException
+     * @return HttpResponse对象
+     * @throws org.apache.http.client.ClientProtocolException 客户端异常
+     * @throws java.io.IOException                            IO异常
      */
     protected HttpResponse execHttpClient(HttpRequestForm form, String uri)
             throws ClientProtocolException, IOException {

@@ -12,7 +12,6 @@ import com.icrane.quickmode.app.Releasable;
 import com.icrane.quickmode.utils.common.CommonUtils;
 import com.icrane.quickmode.utils.common.LogUtils;
 
-@SuppressWarnings("ALL")
 public final class Dimens implements Releasable {
 
     //	public static final String TAG = "DeviceDimens";
@@ -176,7 +175,7 @@ public final class Dimens implements Releasable {
      * @param source  资源属性名称
      * @param clsName 类全名
      * @return 对应属性的值
-     * @throws ClassNotFoundException
+     * @throws ClassNotFoundException 找不到类型异常
      */
     public static int getInternalDimenResourcesId(String source, String clsName)
             throws ClassNotFoundException {

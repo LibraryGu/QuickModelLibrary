@@ -10,7 +10,6 @@ import com.icrane.quickmode.utils.common.LogUtils;
 /**
  * Created by gujiwen on 15/4/15.
  */
-@SuppressWarnings("ALL")
 public final class QModel implements Releasable, IContextConvert<QModelActivity> {
 
     // Application

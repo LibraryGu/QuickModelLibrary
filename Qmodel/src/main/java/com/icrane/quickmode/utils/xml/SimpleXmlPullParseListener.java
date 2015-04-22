@@ -5,7 +5,6 @@ import com.icrane.quickmode.utils.xml.attribute.XmlPullAttributes;
 /**
  * 里面都是空方法,是pull解析监听器,可选择重写方法,实现想要的
  */
-@SuppressWarnings("ALL")
 public abstract class SimpleXmlPullParseListener implements
 		OnXmlPullParseListener {
 

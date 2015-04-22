@@ -3,7 +3,6 @@ package com.icrane.quickmode.http;
 import com.icrane.quickmode.http.exec.client.AbClientExecutor;
 import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
 
-@SuppressWarnings("ALL")
 public interface OnRequestListener<T> {
     /**
      * 处理响应数据

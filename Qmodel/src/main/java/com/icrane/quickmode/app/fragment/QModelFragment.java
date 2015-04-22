@@ -10,7 +10,6 @@ import com.icrane.quickmode.app.QModelHelper;
 import com.icrane.quickmode.app.fragment.utils.FragmentBundles;
 import com.icrane.quickmode.app.fragment.utils.FragmentHandler;
 
-@SuppressWarnings("ALL")
 public abstract class QModelFragment extends Fragment {
 
     static final int NO_ID = -1;

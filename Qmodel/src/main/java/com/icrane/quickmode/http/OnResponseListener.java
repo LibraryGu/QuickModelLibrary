@@ -6,7 +6,6 @@ import com.icrane.quickmode.http.exec.data.packet.AbResponsePacket;
 
 import java.io.IOException;
 
-@SuppressWarnings("ALL")
 public interface OnResponseListener<T> extends IAsyncWritable<T>, IAsyncReadable<T> {
 
     /**
@@ -19,11 +18,12 @@ public interface OnResponseListener<T> extends IAsyncWritable<T>, IAsyncReadable
     public AbResponsePacket handleResponse(AbClientExecutor executor, T response);
 
     /**
-     * 打包
+     * 打包响应数据包
      *
      * @param executor 进行网络请求的执行对象
      * @param response 进行网络请求得到的响应对象
-     * @return
+     * @return 响应数据包
+     * @throws IOException IO异常
      */
     public AbResponsePacket onPacked(AbClientExecutor executor, T response) throws IOException;
 
@@ -31,6 +31,7 @@ public interface OnResponseListener<T> extends IAsyncWritable<T>, IAsyncReadable
      * 请求成功,接收数据包
      *
      * @param response 响应包
+     * @return 读取的对象，可能为CONTENT或CACHE_CONTENT类型
      */
     public Object onReceive(AbResponsePacket response);
 

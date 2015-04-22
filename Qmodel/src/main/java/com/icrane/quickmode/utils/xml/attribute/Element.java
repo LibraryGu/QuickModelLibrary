@@ -2,7 +2,6 @@ package com.icrane.quickmode.utils.xml.attribute;
 
 import com.icrane.quickmode.utils.common.CommonUtils;
 
-@SuppressWarnings("ALL")
 public class Element {
 	// 标签名
 	private String elementName;

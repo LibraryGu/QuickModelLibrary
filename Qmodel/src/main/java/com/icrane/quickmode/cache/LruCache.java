@@ -17,7 +17,7 @@ public class LruCache<V> extends BasicLruCache<String, V> {
 	protected boolean removeEldestEntry(java.util.Map.Entry<String, V> eldest) {
 
 		OnLruCacheListener onLruCacheListener = this.getOnLruCacheListener();
-		this.setClearable(true);
+		this.setClear(true);
 
 		if (!CommonUtils.isEmpty(onLruCacheListener)) {
 			onLruCacheListener.onLeastRecentlyUsed(eldest.getKey() ,eldest.getValue());

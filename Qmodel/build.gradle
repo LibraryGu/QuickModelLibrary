@@ -48,7 +48,7 @@ install {
                 developers {
                     developer {
                         id 'gu_crane'
-                        name 'gujiwen'
+                        name 'Gujiwen'
                         email 'gu_crane@163.com'
                     }
                 }
@@ -61,7 +61,6 @@ install {
         }
     }
 }
-
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
@@ -90,7 +89,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "quickmodel-core"
+        name = "qmodel-core"
         websiteUrl = SITE_URL
         vcsUrl = GIT_URL
         licenses = ["Apache-2.0"]

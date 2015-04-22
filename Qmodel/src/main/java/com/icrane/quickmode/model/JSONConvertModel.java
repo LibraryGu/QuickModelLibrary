@@ -9,7 +9,6 @@ import org.json.JSONObject;
 /**
  * Created by gujiwen on 15/4/21.
  */
-@SuppressWarnings("ALL")
 public abstract class JSONConvertModel implements JSONConvert {
 
     @Override

@@ -10,7 +10,6 @@ import com.icrane.quickmode.app.effect.SlideEffect;
 /**
  * Created by gujiwen on 15/4/20.
  */
-@SuppressWarnings("ALL")
 public class QModelSwitchFragmentActivity extends QModelGesturesActivity {
 
     @Override

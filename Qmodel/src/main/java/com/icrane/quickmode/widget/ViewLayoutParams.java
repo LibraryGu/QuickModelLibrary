@@ -12,7 +12,6 @@ import java.lang.reflect.Type;
  *
  * @author gujiwen
  */
-@SuppressWarnings("deprecation")
 public enum ViewLayoutParams {
 
     FULL_MATCH(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT), FULL_FILL(

@@ -2,6 +2,7 @@ package com.icrane.quickmode.utils.reflect;
 
 import com.icrane.quickmode.model.JSONConvert;
 import com.icrane.quickmode.model.JSONConvertModel;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +18,6 @@ import java.util.Map;
 /*
  * 反射类，利用反射机制将json反射为对象
  */
-@SuppressWarnings("ALL")
 public final class JSONReflector<T> {
 
     // 测试使用
@@ -28,12 +28,15 @@ public final class JSONReflector<T> {
     }
 
     /**
-     * 转化为对象
+     * 将JSONObject对象转换为指定类型对象
      *
-     * @param jsonObj JSONObject对象
-     * @param type    对象类型
-     * @param f_type  反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰。
-     * @return <T> 返回指定类型的对象
+     * @param jsonObject JSONObject对象
+     * @param type       对象类型
+     * @param f_type     反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰。
+     * @param <T>        泛型
+     * @return 执行泛型类型T的对象
+     * @throws JSONException          JSON异常
+     * @throws IllegalAccessException 参数异常
      */
     public static <T> T toModel(JSONObject jsonObject, Type type, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
 
@@ -62,12 +65,15 @@ public final class JSONReflector<T> {
     }
 
     /**
-     *
+     * 将JSONArray转换成List,指定列表中可容纳的对象类型
      *
      * @param jsonArray JSONArray对象
      * @param type      指定对象类型
      * @param f_type    反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
-     * @return List<T>对象
+     * @param <T>       泛型
+     * @return 指定泛型T对象的一个列表对象
+     * @throws JSONException          JSON异常
+     * @throws IllegalAccessException 参数异常
      */
     public static <T> List<T> toModel(JSONArray jsonArray, Type type, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
 
@@ -82,11 +88,13 @@ public final class JSONReflector<T> {
     }
 
     /**
-     * 转换成Map
+     * 将JSONObject对象转换成Map对象
      *
      * @param jsonObject 指定对象
      * @param f_type     反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return Map对象
+     * @throws JSONException          JSON异常
+     * @throws IllegalAccessException 参数异常
      */
     public static Map<String, Object> toModel(JSONObject jsonObject, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
 
@@ -108,11 +116,12 @@ public final class JSONReflector<T> {
     }
 
     /**
-     * 转换成JSONObject
+     * 将Object对象转换成JSONObject
      *
      * @param object 指定对象
      * @param f_type 反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return JSONObject对象
+     * @throws java.lang.IllegalAccessException 参数异常
      */
     public static JSONObject toJSONObject(Object object, AMPlusReflector.ReflectType f_type) throws IllegalAccessException {
 
@@ -132,11 +141,12 @@ public final class JSONReflector<T> {
     }
 
     /**
-     * 转换成JSONArray
+     * 将Object对象转换成JSONArray
      *
      * @param object 指定对象
      * @param f_type 反射类型,推荐设置为DEFAULT,并且要转换对象内部属性都用public修饰符修饰
      * @return JSONArray对象
+     * @throws java.lang.IllegalAccessException 参数异常
      */
     public static JSONArray toJSONArray(Object object, AMPlusReflector.ReflectType f_type) throws IllegalAccessException {
 

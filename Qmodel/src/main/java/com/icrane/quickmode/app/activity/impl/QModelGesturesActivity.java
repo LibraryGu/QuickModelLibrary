@@ -10,7 +10,6 @@ import com.icrane.quickmode.app.effect.SlideEffect;
 /**
  * Created by gujiwen on 15/4/9.
  */
-@SuppressWarnings("ALL")
 public class QModelGesturesActivity extends QModelActivity {
 
     /**
@@ -276,7 +275,7 @@ public class QModelGesturesActivity extends QModelActivity {
     /**
      * 设置滑动时,两点Y坐标间的最大距离
      *
-     * @param maxDistanceY
+     * @param maxDistanceY Y坐标上的最大速度
      */
     public void setMaxDistanceY(int maxDistanceY) {
         this.maxDistanceY = maxDistanceY;
@@ -320,6 +319,8 @@ public class QModelGesturesActivity extends QModelActivity {
 
     /**
      * 从左至右滑动
+     *
+     * @param direction 动画效果
      */
     protected void onSlidingToDirection(SlideEffect.SlideDirection direction) {
         if (onSlideListener != null) {

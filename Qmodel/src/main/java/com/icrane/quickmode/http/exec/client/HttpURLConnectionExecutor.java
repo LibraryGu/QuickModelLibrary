@@ -21,7 +21,6 @@ import javax.net.ssl.HttpsURLConnection;
 /**
  * Created by gujiwen on 15/4/20.
  */
-@SuppressWarnings("ALL")
 public class HttpURLConnectionExecutor extends AbClientExecutor<HttpURLConnection> {
 
     //请求数据包
@@ -63,6 +62,7 @@ public class HttpURLConnectionExecutor extends AbClientExecutor<HttpURLConnectio
     /**
      * 获取默认HttpsURLConnection对象
      *
+     * @param mURL URL对象
      * @return 默认HttpsURLConnection对象
      */
     protected HttpURLConnection generateDefaultHttpURLConnection(URL mURL) {
@@ -85,6 +85,8 @@ public class HttpURLConnectionExecutor extends AbClientExecutor<HttpURLConnectio
      * @param form 请求表单
      * @param uri  地址
      * @return HttpURLConnection
+     * @throws java.net.ProtocolException     Http协议异常
+     * @throws java.net.MalformedURLException MalformedURLException异常
      */
     protected HttpURLConnection execHttpURLConnection(HttpRequestForm form, String uri) throws ProtocolException, MalformedURLException {
 
@@ -103,10 +105,9 @@ public class HttpURLConnectionExecutor extends AbClientExecutor<HttpURLConnectio
      * 重设置
      *
      * @param uri    地址
-     * @param params 参数
      * @param method 请求方法
-     * @throws MalformedURLException
-     * @throws ProtocolException
+     * @throws java.net.ProtocolException     Http协议异常
+     * @throws java.net.MalformedURLException MalformedURLException异常
      */
     protected void reset(String uri, RequestMethod method) throws MalformedURLException, ProtocolException {
         generateDefaultHttpURLConnection(new URL(uri));

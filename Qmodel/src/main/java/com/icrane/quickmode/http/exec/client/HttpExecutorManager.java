@@ -21,7 +21,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings("ALL")
 public final class HttpExecutorManager implements Observer, Releasable {
 
     /**
@@ -126,8 +125,9 @@ public final class HttpExecutorManager implements Observer, Releasable {
     /**
      * 提交数据
      *
-     * @param what 通知类型
-     * @param obj  传输参数
+     * @param what     通知类型
+     * @param obj      传输参数
+     * @param duration 间隔时间
      */
     protected synchronized void commit(int what, Object obj, long duration) {
         Message msg = execHandler.obtainMessage();
@@ -193,6 +193,7 @@ public final class HttpExecutorManager implements Observer, Releasable {
      * 关闭线程池并等待的任务完成
      *
      * @param timeout 超时时间
+     * @return true表示关闭，false会尽可能的关闭
      */
     public boolean shutdownAwaitTermination(long timeout) {
 

@@ -15,7 +15,6 @@ import java.net.HttpURLConnection;
 /**
  * Created by gujiwen on 15/3/19.
  */
-@SuppressWarnings("ALL")
 public abstract class AsyncURLConnImageResponse extends AsyncURLConnBasicResponse implements IAsyncResponseCallback<Bitmap> {
 
     @Override

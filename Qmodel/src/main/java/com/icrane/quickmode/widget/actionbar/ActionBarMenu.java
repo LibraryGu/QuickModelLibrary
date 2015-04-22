@@ -16,7 +16,6 @@ import com.icrane.quickmode.utils.common.SDKSupport;
 /**
  * Created by gujiwen on 15/4/16.
  */
-@SuppressWarnings("ALL")
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 public class ActionBarMenu extends TextView implements Menu {
 

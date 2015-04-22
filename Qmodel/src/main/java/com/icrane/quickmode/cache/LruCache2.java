@@ -18,7 +18,7 @@ public class LruCache2<V> extends LruCache<V> {
      */
     private void initLruCache2(int weakCapacity) {
 
-        this.setClearable(true);
+        this.setClear(true);
         this.mWeakCapacity = weakCapacity;
 
         mWeakLruCache = new LruCache<V>(this.mWeakCapacity);

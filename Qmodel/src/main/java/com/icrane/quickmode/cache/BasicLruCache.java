@@ -1,7 +1,5 @@
 package com.icrane.quickmode.cache;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 
 /**
@@ -27,7 +25,7 @@ public abstract class BasicLruCache<K, V> extends LinkedHashMap<K, V> {
     // 最大容量
     private int maxCapacity;
     // LRU监听器
-    private OnLruCacheListener mOnLruCachelistener;
+    private OnLruCacheListener mOnLruCacheListener;
 
     public BasicLruCache(int capacity) {
         super(capacity <= 0 ? DEFAULT_MAX_CAPACITY : capacity,
@@ -55,20 +53,16 @@ public abstract class BasicLruCache<K, V> extends LinkedHashMap<K, V> {
     }
 
     public void clear() {
-        if (isClearable()) {
+        if (isClear()) {
             super.clear();
         }
     }
 
-    public Collection<Entry<K, V>> getAll() {
-        return new ArrayList<Entry<K, V>>(super.entrySet());
-    }
-
-    public boolean isClearable() {
+    public boolean isClear() {
         return isClear;
     }
 
-    public void setClearable(boolean isClear) {
+    public void setClear(boolean isClear) {
         this.isClear = isClear;
     }
 
@@ -77,11 +71,11 @@ public abstract class BasicLruCache<K, V> extends LinkedHashMap<K, V> {
     }
 
     public OnLruCacheListener getOnLruCacheListener() {
-        return mOnLruCachelistener;
+        return mOnLruCacheListener;
     }
 
     public void setOnLruCacheListener(OnLruCacheListener listener) {
-        this.mOnLruCachelistener = listener;
+        this.mOnLruCacheListener = listener;
     }
 
 }

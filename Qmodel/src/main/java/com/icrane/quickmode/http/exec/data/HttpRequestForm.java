@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@SuppressWarnings("ALL")
 public final class HttpRequestForm {
 
     // 请求方式
@@ -39,6 +38,7 @@ public final class HttpRequestForm {
      *
      * @param parameterKey   参数键
      * @param parameterValue 参数值
+     * @return HttpRequestForm
      */
     public HttpRequestForm put(String parameterKey, String parameterValue) {
 
@@ -79,6 +79,9 @@ public final class HttpRequestForm {
 
     /**
      * 获取参数表单
+     *
+     * @param <T> 泛型
+     * @return 泛型类型
      */
     public <T> T getParametersForm() {
         switch (requestMethod) {
@@ -93,6 +96,8 @@ public final class HttpRequestForm {
 
     /**
      * 返回get方式的参数表单
+     *
+     * @return Map
      */
     protected Map<String, String> getParametersFormOfGet() {
         return parameters;
@@ -100,6 +105,8 @@ public final class HttpRequestForm {
 
     /**
      * 返回post方式的参数表单
+     *
+     * @return List
      */
     protected List<BasicNameValuePair> getParametersFormOfPost() {
         return valuePairs;
@@ -156,6 +163,8 @@ public final class HttpRequestForm {
 
     /**
      * 转换成String字符串
+     *
+     * @return 字符串
      */
     public String convertToString() {
 

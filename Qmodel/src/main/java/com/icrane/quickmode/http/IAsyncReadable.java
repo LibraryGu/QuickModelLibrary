@@ -14,7 +14,7 @@ public interface IAsyncReadable<T> {
      * @param executor HTTP执行者
      * @param readable 可读取的数据
      * @return 返回读取的
-     * @throws IOException
+     * @throws IOException IO异常
      */
     public Object onRead(AbClientExecutor executor, T readable) throws IOException;
 }

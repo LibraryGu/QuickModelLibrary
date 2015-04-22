@@ -12,7 +12,6 @@ import com.icrane.quickmode.app.effect.SlideEffect;
 /**
  * Created by gujiwen on 15/4/17.
  */
-@SuppressWarnings("ALL")
 public interface ActionBar {
 
     /**

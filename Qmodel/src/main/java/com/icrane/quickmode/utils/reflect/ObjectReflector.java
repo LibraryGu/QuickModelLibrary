@@ -6,7 +6,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 
-@SuppressWarnings("ALL")
 public final class ObjectReflector {
 
     private Object object;
@@ -21,7 +20,7 @@ public final class ObjectReflector {
     /**
      * 构造函数
      *
-     * @param type 使用new TypeToken<T>(){}.getType()获取
+     * @param type 使用new TypeToken(){}.getType()获取
      */
     public ObjectReflector(Type type) {
         this.setReflectObjectType(type);
@@ -30,7 +29,8 @@ public final class ObjectReflector {
     /**
      * 创建实例对象
      *
-     * @param args 构造参数
+     * @param extendsClass 继承此类型
+     * @param args         构造参数
      */
     public void createInstance(Class<?> extendsClass, Object... args) {
 

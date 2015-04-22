@@ -23,7 +23,6 @@ import java.io.File;
 /**
  * Created by gujiwen on 15/4/12.
  */
-@SuppressWarnings("ALL")
 public final class ImageLoaderUtils implements Releasable {
 
     public static final int DEFAULT_MEMORY_CACHE_SIZE = 1 * 1024 * 1024;
@@ -46,6 +45,8 @@ public final class ImageLoaderUtils implements Releasable {
 
     /**
      * 初始化ImageLoaderUtils,获取默认工具实例，图片缓存存储在手机data文件夹中
+     *
+     * @return 返回默认的工具
      */
     public static ImageLoaderUtils getDefaultImageLoaderUtils() {
         return getInstance("data");
@@ -55,6 +56,7 @@ public final class ImageLoaderUtils implements Releasable {
      * 初始化ImageLoaderUtils
      *
      * @param cacheDir 图片缓存存储的文件夹
+     * @return 实例对象
      */
     public static ImageLoaderUtils getInstance(String cacheDir) {
         if (CommonUtils.isEmpty(imageLoaderUtils)) {

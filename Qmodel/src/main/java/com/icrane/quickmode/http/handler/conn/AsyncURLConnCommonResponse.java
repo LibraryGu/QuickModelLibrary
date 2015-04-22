@@ -6,7 +6,6 @@ import com.icrane.quickmode.utils.common.Streams;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 
-@SuppressWarnings("ALL")
 public abstract class AsyncURLConnCommonResponse extends AsyncURLConnBasicResponse {
 
     @Override

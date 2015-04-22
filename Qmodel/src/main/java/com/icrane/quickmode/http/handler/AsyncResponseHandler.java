@@ -16,7 +16,6 @@ import java.io.IOException;
 /**
  * Created by gujiwen on 15/4/21.
  */
-@SuppressWarnings("ALL")
 public abstract class AsyncResponseHandler<T> implements OnResponseListener<T> {
 
     public abstract int getResponseCode(T response) throws IOException;

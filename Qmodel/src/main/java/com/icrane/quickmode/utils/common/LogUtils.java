@@ -2,7 +2,6 @@ package com.icrane.quickmode.utils.common;
 
 import android.util.Log;
 
-@SuppressWarnings("ALL")
 public final class LogUtils {
 
     // 全局变量，可以通过设置此变量，是否要打印log
@@ -33,7 +32,7 @@ public final class LogUtils {
     public static void sl(LogType type, String msg) {
         if (DEBUG) {
             debug();
-            return ;
+            return;
         }
         String currentTag = getCurrentTag();
         switch (type) {
@@ -62,7 +61,7 @@ public final class LogUtils {
     /**
      * 获取当前的标签
      *
-     * @return
+     * @return 当前的标签
      */
     public static String getCurrentTag() {
         String className = getClassName();
@@ -127,8 +126,7 @@ public final class LogUtils {
 
     /**
      * 设置线程运行栈位置
-     *
-     * @return 线程运行栈位置
+     * @param position 线程运行栈位置
      */
     public static void setStackTracePosition(int position) {
         stackTracePosition = position;

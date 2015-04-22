@@ -8,9 +8,8 @@ import java.lang.reflect.Type;
  * 
  * @author Administrator
  * 
- * @param <T>
+ * @param <T> 泛型
  */
-@SuppressWarnings("ALL")
 public final class TypeToken<T> {
 
 	private Type type;

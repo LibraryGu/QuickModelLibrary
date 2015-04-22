@@ -7,7 +7,6 @@ import com.icrane.quickmode.utils.Charset;
 
 import org.apache.http.Header;
 
-@SuppressWarnings("ALL")
 public abstract class AbRequestPacket {
 
     /**
@@ -21,6 +20,7 @@ public abstract class AbRequestPacket {
      * 设置请求地址
      *
      * @param uri 请求地址
+     * @return AbRequestPacket
      */
     public abstract AbRequestPacket setUri(String uri);
 
@@ -35,6 +35,7 @@ public abstract class AbRequestPacket {
      * 设置完整地址
      *
      * @param completeUri 完整地址
+     * @return AbRequestPacket
      */
     public abstract AbRequestPacket setCompleteUri(String completeUri);
 
@@ -49,6 +50,7 @@ public abstract class AbRequestPacket {
      * 设置请求头
      *
      * @param headers 请求头
+     * @return AbRequestPacket
      */
     public abstract AbRequestPacket setHeaders(Header... headers);
 
@@ -63,6 +65,7 @@ public abstract class AbRequestPacket {
      * 设置请求表单
      *
      * @param httpRequestForm 请求表单
+     * @return AbRequestPacket
      */
     public abstract AbRequestPacket setHttpRequestForm(
             HttpRequestForm httpRequestForm);
@@ -71,6 +74,7 @@ public abstract class AbRequestPacket {
      * 设置使用内存缓存
      *
      * @param useMemoryCache 如果为true表示使用内存缓存，false则表示不使用
+     * @return AbRequestPacket
      */
     public abstract AbRequestPacket setUseMemoryCache(boolean useMemoryCache);
 
@@ -85,6 +89,7 @@ public abstract class AbRequestPacket {
      * 设置使用硬件缓存
      *
      * @param useHardwareCache 如果为true表示使用硬件缓存，false则表示不使用
+     * @return AbRequestPacket
      */
     public abstract AbRequestPacket setUseHardWareCache(boolean useHardwareCache);
 
@@ -107,6 +112,7 @@ public abstract class AbRequestPacket {
      * 设置字符编码
      *
      * @param cacheType 缓存类型
+     * @return AbRequestPacket
      */
     public abstract AbRequestPacket setCacheType(CacheType cacheType);
 
@@ -121,11 +127,14 @@ public abstract class AbRequestPacket {
      * 设置字符编码
      *
      * @param charset 字符编码
+     * @return AbRequestPacket
      */
     public abstract AbRequestPacket setCharset(Charset charset);
 
     /**
      * 获取请求类型
+     *
+     * @return RequestType请求类型
      */
     public abstract RequestType getRequestType();
 
@@ -133,6 +142,7 @@ public abstract class AbRequestPacket {
      * 设置请求类型
      *
      * @param requestType 请求类型
+     * @return AbRequestPacket
      */
     public abstract AbRequestPacket setRequestType(RequestType requestType);
 

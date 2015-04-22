@@ -9,7 +9,6 @@ import java.net.HttpURLConnection;
 /**
  * Created by gujiwen on 15/3/18.
  */
-@SuppressWarnings("ALL")
 public abstract class AsyncURLConnByteResponse extends AsyncURLConnBasicResponse {
 
     /**

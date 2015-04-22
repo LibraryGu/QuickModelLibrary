@@ -36,7 +36,6 @@ import java.util.List;
 import java.util.Locale;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-@SuppressWarnings("ALL")
 public final class HttpUtils {
 
     /* HttpProtocolParams */
@@ -224,7 +223,7 @@ public final class HttpUtils {
      * @param method 请求方法
      * @param form   请求表单
      * @return 请求对象
-     * @throws java.io.UnsupportedEncodingException
+     * @throws java.io.UnsupportedEncodingException 不支持编码异常
      */
     public static HttpRequestBase switchRequestBase(String uri, RequestMethod method, HttpRequestForm form) throws UnsupportedEncodingException {
         return (method == RequestMethod.GET) ? newHttpGet(uri, form) : newHttpPost(uri, form);

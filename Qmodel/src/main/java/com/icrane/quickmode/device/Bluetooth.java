@@ -26,7 +26,6 @@ import java.util.UUID;
 /**
  * Created by gujiwen on 15/4/7.
  */
-@SuppressWarnings("ALL")
 public final class Bluetooth implements Releasable {
 
     private static Bluetooth mBluetooth = null;
@@ -157,7 +156,7 @@ public final class Bluetooth implements Releasable {
     /**
      * 创建配对
      *
-     * @param device
+     * @param device 蓝牙设备
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void createBond(BluetoothDevice device) {
@@ -167,7 +166,7 @@ public final class Bluetooth implements Releasable {
     /**
      * 取消配对进程
      *
-     * @param device
+     * @param device 蓝牙设备
      */
     public void cancelBondProcess(BluetoothDevice device) {
         try {
@@ -182,7 +181,7 @@ public final class Bluetooth implements Releasable {
     /**
      * 取消用户输入
      *
-     * @param device
+     * @param device 蓝牙设备
      */
     public void cancelPairingUserInput(BluetoothDevice device) {
         try {
@@ -197,7 +196,7 @@ public final class Bluetooth implements Releasable {
     /**
      * 解除配对
      *
-     * @param device
+     * @param device 蓝牙设备
      */
     public void removeBond(BluetoothDevice device) {
         try {
@@ -232,7 +231,7 @@ public final class Bluetooth implements Releasable {
     /**
      * 设置UUID
      *
-     * @param uuids
+     * @param uuids uuid
      */
     public void setUUID(UUIDs uuids) {
         this.uuid = uuids.uuid();

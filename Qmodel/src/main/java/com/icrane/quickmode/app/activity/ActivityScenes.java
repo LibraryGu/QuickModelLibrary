@@ -11,7 +11,6 @@ import com.icrane.quickmode.utils.common.LogUtils;
 /**
  * Created by gujiwen on 15/4/9.
  */
-@SuppressWarnings("ALL")
 public final class ActivityScenes {
 
     private Intent intent = null;

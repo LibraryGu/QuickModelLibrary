@@ -8,7 +8,6 @@ import org.json.JSONObject;
 /**
  * Created by gujiwen on 15/4/21.
  */
-@SuppressWarnings("ALL")
 public interface JSONConvert {
 
     public JSONObject convertToJSONObject() throws IllegalAccessException;

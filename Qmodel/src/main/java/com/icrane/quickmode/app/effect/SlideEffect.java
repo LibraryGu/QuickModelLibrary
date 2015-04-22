@@ -7,7 +7,6 @@ import com.icrane.quickmode.R;
  * 
  * @author Administrator
  */
-@SuppressWarnings("ALL")
 public class SlideEffect {
 
 	public int enterAnim;

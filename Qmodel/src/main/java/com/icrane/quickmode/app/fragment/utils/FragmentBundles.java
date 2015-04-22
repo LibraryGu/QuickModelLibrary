@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-@SuppressWarnings("ALL")
 public final class FragmentBundles extends HashMap<String, Bundle> {
 
 	/**
@@ -28,7 +27,7 @@ public final class FragmentBundles extends HashMap<String, Bundle> {
 	/**
 	 * 获取默认缓存对象
 	 * 
-	 * @return
+	 * @return 默认缓存对象
 	 */
 	public static final FragmentBundles getDefault() {
 		return getInstance();
@@ -37,7 +36,7 @@ public final class FragmentBundles extends HashMap<String, Bundle> {
 	/**
 	 * 获取缓存对象
 	 * 
-	 * @return
+	 * @return 缓存对象
 	 */
 	public static final FragmentBundles getInstance() {
 		if (CommonUtils.isEmpty(mFragmentBundle)) {

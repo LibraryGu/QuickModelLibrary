@@ -23,7 +23,6 @@ import java.util.Observable;
 
 import javax.net.ssl.HttpsURLConnection;
 
-@SuppressWarnings("ALL")
 public abstract class AbClientExecutor<T> extends Observable implements Releasable, Runnable {
 
     // 支持HTTPS安全通信对象
@@ -51,8 +50,8 @@ public abstract class AbClientExecutor<T> extends Observable implements Releasab
     /**
      * 构造方法
      *
-     * @param request         请求包
-     * @param responseHandler 请求管理者
+     * @param request            请求包
+     * @param onResponseListener 请求管理者
      */
     public AbClientExecutor(AbRequestPacket request, OnResponseListener onResponseListener) {
 
@@ -114,7 +113,7 @@ public abstract class AbClientExecutor<T> extends Observable implements Releasab
     /**
      * 通知更新
      *
-     * @param data
+     * @param data 数据对象
      */
     protected void notifyPreUpdate(Object data) {
         this.setChanged();
@@ -125,8 +124,8 @@ public abstract class AbClientExecutor<T> extends Observable implements Releasab
      * 执行请求操作
      *
      * @return 返回响应包对象
-     * @throws org.apache.http.client.ClientProtocolException
-     * @throws java.io.IOException
+     * @throws org.apache.http.client.ClientProtocolException 客户端异常
+     * @throws java.io.IOException                            IO异常
      */
     protected abstract AbResponsePacket requestNetwork() throws ClientProtocolException, IOException;
 
@@ -166,7 +165,7 @@ public abstract class AbClientExecutor<T> extends Observable implements Releasab
     /**
      * 设置请求包对象
      *
-     * @param requestPacket
+     * @param requestPacket 请求包
      */
     public void setRequestPacket(AbRequestPacket requestPacket) {
         this.mRequestPacket = requestPacket;
@@ -193,7 +192,7 @@ public abstract class AbClientExecutor<T> extends Observable implements Releasab
     /**
      * 设置响应处理类
      *
-     * @param asyncBasicResponse 响应监听器对象
+     * @param onResponseListener 响应监听器对象
      */
     public void setOnResponseListener(OnResponseListener onResponseListener) {
         this.mOnResponseListener = onResponseListener;

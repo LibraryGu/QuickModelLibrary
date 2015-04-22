@@ -25,7 +25,6 @@ import com.icrane.quickmode.widget.ViewLayoutParams;
 /**
  * Created by gujiwen on 15/4/16.
  */
-@SuppressWarnings("ALL")
 public class ActionBarLayout extends ViewGroup implements ActionBar, View.OnClickListener {
 
     private static final int ACTIONBAR_DEFAULT_HEIGHT = 48;

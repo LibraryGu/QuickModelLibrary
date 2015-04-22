@@ -2,7 +2,6 @@ package com.icrane.quickmode.utils.xml;
 
 import com.icrane.quickmode.utils.xml.attribute.XmlPullAttributes;
 
-@SuppressWarnings("ALL")
 public interface OnXmlPullParseListener {
 	public void startPullDocument();
 	public void endPullDocument();

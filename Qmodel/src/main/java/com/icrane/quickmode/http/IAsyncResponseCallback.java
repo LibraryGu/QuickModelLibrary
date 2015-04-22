@@ -5,7 +5,6 @@ import com.icrane.quickmode.http.HttpError;
 /**
  * Created by gujiwen on 15/3/19.
  */
-@SuppressWarnings("ALL")
 public interface IAsyncResponseCallback<T> {
     /**
      * 进行处理

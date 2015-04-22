@@ -1,6 +1,5 @@
 package com.icrane.quickmode.utils.xml.attribute;
 
-@SuppressWarnings("ALL")
 public class Attribute {
 
 	private String name;

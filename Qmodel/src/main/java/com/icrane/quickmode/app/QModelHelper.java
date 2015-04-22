@@ -18,7 +18,6 @@ import com.icrane.quickmode.utils.image.ImageLoaderUtils;
 /**
  * Created by gujiwen on 15/4/15.
  */
-@SuppressWarnings("ALL")
 public final class QModelHelper implements Releasable {
 
     private static QModelHelper mQModelHelper = null;

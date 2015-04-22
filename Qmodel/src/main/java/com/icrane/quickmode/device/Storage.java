@@ -38,7 +38,6 @@ import java.util.Map;
  *	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> or
  *  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
  */
-@SuppressWarnings("ALL")
 public final class Storage implements Releasable {
 
     // 写入失败
@@ -62,9 +61,9 @@ public final class Storage implements Releasable {
     }
 
     /**
-     * 获取DeviceStorageManager实例对象,获取的时唯一的对象；
+     * 获取Storage实例对象,获取的时唯一的对象；
      *
-     * @return
+     * @return Storage
      */
     public static Storage getDefaultStorage() {
         if (CommonUtils.isEmpty(mDeviceStorage)) {
@@ -74,10 +73,10 @@ public final class Storage implements Releasable {
     }
 
     /**
-     * 获取DeviceStorageManager的一个新实例
+     * 获取Storage的一个新实例
      *
      * @param path 传入存储路径
-     * @return
+     * @return Storage
      */
     public static Storage getStorage(String path) {
         return new Storage(path);
@@ -89,8 +88,8 @@ public final class Storage implements Releasable {
      * @param filePath    文件路径
      * @param charsetName 内容编码
      * @return 返回文件内容
-     * @throws java.io.FileNotFoundException
-     * @throws java.io.UnsupportedEncodingException
+     * @throws java.io.FileNotFoundException        找不到文件异常
+     * @throws java.io.UnsupportedEncodingException 不支持编码异常
      */
     public String readToFile(String filePath, Charset charsetName)
             throws FileNotFoundException, UnsupportedEncodingException {
@@ -102,7 +101,7 @@ public final class Storage implements Releasable {
      *
      * @param is 输入流
      * @return 返回文件内容
-     * @throws java.io.UnsupportedEncodingException
+     * @throws java.io.UnsupportedEncodingException 不支持编码异常
      */
     public String readToFile(InputStream is)
             throws UnsupportedEncodingException {
@@ -115,8 +114,8 @@ public final class Storage implements Releasable {
      * @param context    上下文
      * @param fileName   文件名
      * @param accessMode 允许读取的模式
-     * @return
-     * @throws java.io.IOException
+     * @return 输入流
+     * @throws java.io.IOException IO异常
      */
     public InputStream readToAsset(Context context, String fileName,
                                    int accessMode) throws IOException {
@@ -151,8 +150,8 @@ public final class Storage implements Releasable {
      * @param accessMode  允许读取方式
      * @param charsetName 字符编码
      * @return 返回读取的内容
-     * @throws java.io.UnsupportedEncodingException
-     * @throws java.io.IOException
+     * @throws java.io.UnsupportedEncodingException 不支持编码异常
+     * @throws java.io.IOException                  IO异常
      */
     public String readToAssetFile(Context context, String fileName,
                                   int accessMode, Charset charsetName)
@@ -176,7 +175,8 @@ public final class Storage implements Releasable {
      *
      * @param filePath 写入文件的路径
      * @param content  写入文件的内容
-     * @throws java.io.IOException
+     * @return true表示写入成功，反之返回false
+     * @throws java.io.IOException IO异常
      */
     public boolean writeToFile(String filePath, String content)
             throws IOException {
@@ -191,10 +191,10 @@ public final class Storage implements Releasable {
      * @param fileName 文件名
      * @param is       输入流
      * @param size     每次读取的缓冲大小
-     * @throws java.io.IOException
+     * @param owl      写入时监听写入过程
+     * @throws java.io.IOException IO异常
      */
-    public void writeToFile(String filePath, String fileName, InputStream is,
-                            int size, OnWriteListener owl) throws IOException {
+    public void writeToFile(String filePath, String fileName, InputStream is, int size, OnWriteListener owl) throws IOException {
         int count = 0;
         int progress = 0;
         byte[] buff = new byte[size];
@@ -297,7 +297,7 @@ public final class Storage implements Releasable {
      * 将文件夹内文件放入Map中
      *
      * @param dirPath 文件夹路径
-     * @return
+     * @return 返回文件夹内文件Map
      */
     public Map<String, File> directoryToFileMap(String dirPath) {
         File file = new File(dirPath);

@@ -27,7 +27,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SuppressLint({"SimpleDateFormat", "NewApi"})
-@SuppressWarnings("ALL")
 public final class CommonUtils {
 
     public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd hh:mm";
@@ -38,10 +37,10 @@ public final class CommonUtils {
     public static final String MATCHES_CHINESE = "[\\u4e00-\\u9fa5]+";
 
     /**
-     * 判斷一個對象是否為空
+     * 判断一個对象是否为空
      *
-     * @param obj
-     * @return
+     * @param obj 指定对象
+     * @return 是否为空
      */
     public static boolean isEmpty(Object obj) {
         return obj == null;
@@ -51,7 +50,7 @@ public final class CommonUtils {
      * 判断集合是否为空
      *
      * @param collection 集合类
-     * @return
+     * @return 集合是否为空
      */
     public static boolean isEmpty(Collection<?> collection) {
         return (collection == null || collection.size() == 0 || collection
@@ -59,10 +58,10 @@ public final class CommonUtils {
     }
 
     /**
-     * 判断字符串是否为空
+     * 判断字符串对象是否为空
      *
-     * @param str
-     * @return
+     * @param str 字符串对象
+     * @return 字符串对象是否为空
      */
     public static boolean isEmpty(String str) {
         return TextUtils.isEmpty(str);
@@ -71,8 +70,8 @@ public final class CommonUtils {
     /**
      * 判断是否为url链接
      *
-     * @param input
-     * @return
+     * @param input 字符串对象
+     * @return 是否为url链接
      */
     public static boolean isHttpUrl(String input) {
         return matching(MATCHES_HTTP_URL, input);
@@ -83,7 +82,7 @@ public final class CommonUtils {
      *
      * @param regex 正则表达式
      * @param input 输入需要匹配的内容
-     * @return
+     * @return true表示匹配成功, false表示失败
      */
     public static boolean matching(String regex, String input) {
         Pattern pattern = Pattern.compile(regex);
@@ -97,10 +96,9 @@ public final class CommonUtils {
      * @param regex 正则表达式
      * @param input 输入需要匹配的内容
      * @param group 获取匹配结果的组
-     * @return
+     * @return 正则匹配，并获取匹配的结果集
      */
-    public static List<String> matchingToList(String regex, String input,
-                                              int group) {
+    public static List<String> matchingToList(String regex, String input, int group) {
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
@@ -114,8 +112,8 @@ public final class CommonUtils {
     /**
      * 是否存在特殊字符
      *
-     * @param str
-     * @return
+     * @param str 字符串对象
+     * @return true表示存在, false表示不存在
      */
     public static boolean isExistSpecialSymbols(String str) {
         for (Character c : str.toCharArray()) {
@@ -131,8 +129,8 @@ public final class CommonUtils {
     /**
      * 是否存在数字
      *
-     * @param str
-     * @return
+     * @param str 字符串对象
+     * @return true表示存在, false表示不存在
      */
     public static boolean isExistNumber(String str) {
         for (Character c : str.toCharArray()) {
@@ -146,8 +144,8 @@ public final class CommonUtils {
     /**
      * 是否存在字母
      *
-     * @param str
-     * @return
+     * @param str 字符串对象
+     * @return true表示存在, false表示不存在
      */
     public static boolean isExistLetter(String str) {
         for (Character c : str.toCharArray()) {
@@ -161,8 +159,8 @@ public final class CommonUtils {
     /**
      * 转换为字符串
      *
-     * @param values
-     * @return
+     * @param values 列表对象
+     * @return 转换为字符串
      */
     public static String convertListToURLParamsString(List<?> values) {
         StringBuffer buff = new StringBuffer();
@@ -176,9 +174,9 @@ public final class CommonUtils {
     /**
      * 获取资源id，如果获取失败将会返回-1
      *
-     * @param cls
-     * @param source
-     * @return
+     * @param cls    对应类型对象
+     * @param source 资源名称
+     * @return 获取资源id，如果获取失败将会返回-1
      */
     public static int getResourcesId(Class<?> cls, String source) {
         try {
@@ -200,8 +198,8 @@ public final class CommonUtils {
     /**
      * 获取图片资源id
      *
-     * @param source
-     * @return
+     * @param source 资源id的字符串名称
+     * @return 图片资源id
      */
     public static int getDrawableResourcesId(String source) {
         return getResourcesId(R.drawable.class, source);
@@ -210,8 +208,8 @@ public final class CommonUtils {
     /**
      * 获取字符串资源id
      *
-     * @param source
-     * @return
+     * @param source 资源id的字符串名称
+     * @return 字符串资源id
      */
     public static int getStringsResourcesId(String source) {
         return getResourcesId(R.string.class, source);
@@ -220,8 +218,8 @@ public final class CommonUtils {
     /**
      * 获取测量资源id
      *
-     * @param source
-     * @return
+     * @param source 资源id的字符串名称
+     * @return 测量资源id
      */
     public static int getDimensResourcesId(String source) {
         return getResourcesId(R.dimen.class, source);
@@ -230,8 +228,8 @@ public final class CommonUtils {
     /**
      * 获取布局资源id
      *
-     * @param source
-     * @return
+     * @param source 资源id的字符串名称
+     * @return 布局资源id
      */
     public static int getLayoutResourcesId(String source) {
         return getResourcesId(R.layout.class, source);
@@ -240,8 +238,8 @@ public final class CommonUtils {
     /**
      * 获取风格资源id
      *
-     * @param source
-     * @return
+     * @param source 资源id的字符串名称
+     * @return 风格资源id
      */
     public static int getStylesResourcesId(String source) {
         return getResourcesId(R.style.class, source);
@@ -250,8 +248,8 @@ public final class CommonUtils {
     /**
      * 获取动画资源id
      *
-     * @param source
-     * @return
+     * @param source 资源id的字符串名称
+     * @return 动画资源id
      */
     public static int getAnimResourcesId(String source) {
         return getResourcesId(R.anim.class, source);
@@ -260,7 +258,9 @@ public final class CommonUtils {
     /**
      * 获取随机图片Id
      *
-     * @return
+     * @param pattern     前缀
+     * @param randomRange 随机数字范围
+     * @return 随机图片Id
      */
     public static int getRandomDrawableId(String pattern, int randomRange) {
         int num = (int) ((Math.random() * randomRange) + 1);
@@ -270,9 +270,9 @@ public final class CommonUtils {
     /**
      * 获取一个drawable图片
      *
-     * @param context
-     * @param resId
-     * @return
+     * @param context 描述上下文对象
+     * @param resId   资源id
+     * @return Drawable图片
      */
     public static Drawable obtainDrawable(Context context, int resId) {
         if (resId <= 0) return null;
@@ -282,9 +282,9 @@ public final class CommonUtils {
     /**
      * 获取一个drawable图片
      *
-     * @param context
-     * @param bitmap
-     * @return
+     * @param context 描述上下文对象
+     * @param bitmap  Bitmap位图
+     * @return Drawable图片
      */
     public static Drawable obtainDrawable(Context context, Bitmap bitmap) {
         return new BitmapDrawable(context.getResources(), bitmap);
@@ -293,9 +293,9 @@ public final class CommonUtils {
     /**
      * 获取一个drawable图片
      *
-     * @param context 上下文
-     * @param is
-     * @return
+     * @param context 描述上下文对象
+     * @param is      输入流
+     * @return Drawable图片
      */
     public static Drawable obtainDrawable(Context context, InputStream is) {
         return new BitmapDrawable(context.getResources(), is);
@@ -304,10 +304,10 @@ public final class CommonUtils {
     /**
      * 获取一个drawable图片
      *
-     * @param context
-     * @param resId
-     * @param density
-     * @return
+     * @param context 描述上下文对象
+     * @param resId   资源id
+     * @param density 密度
+     * @return Drawable图片
      */
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     public static Drawable obtainDensityDrawable(Context context, int resId,
@@ -319,12 +319,12 @@ public final class CommonUtils {
     /**
      * 转化时间
      *
-     * @param pattern
-     * @param milliseconds
-     * @return
+     * @param formatStr    格式
+     * @param milliseconds 毫秒
+     * @return 字符串表示
      */
-    public static String dateFormat(String pattern, long milliseconds) {
-        SimpleDateFormat format = new SimpleDateFormat(pattern);
+    public static String dateFormat(String formatStr, long milliseconds) {
+        SimpleDateFormat format = new SimpleDateFormat(formatStr);
         Date date = new Date(milliseconds);
         return format.format(date);
     }
@@ -332,8 +332,8 @@ public final class CommonUtils {
     /**
      * 匹配中文
      *
-     * @param str
-     * @return
+     * @param str 字符串对象
+     * @return true表示匹配成功，false表示失败
      */
     public static boolean matchesChinese(String str) {
         return str.matches(MATCHES_CHINESE);
@@ -342,8 +342,8 @@ public final class CommonUtils {
     /**
      * 匹配邮箱地址
      *
-     * @param mail
-     * @return
+     * @param mail email地址
+     * @return true表示匹配成功，反之返回false
      */
     public static boolean matchesMail(String mail) {
         return mail.matches(MATCHES_MAIL);
@@ -352,9 +352,9 @@ public final class CommonUtils {
     /**
      * 强制隐藏软键盘
      *
-     * @param context
-     * @param view
-     * @return
+     * @param context 描述上下文对象
+     * @param view    视图对象
+     * @return true表示隐藏成功，反之返回false
      */
     public static boolean hideSoftKeyboard(Context context, View view) {
         InputMethodManager mInputMethodManager = (InputMethodManager) context
@@ -366,7 +366,7 @@ public final class CommonUtils {
     /**
      * 获取可变的UUID
      *
-     * @return
+     * @return 可变的UUID
      */
     public static UUID getVariableUUID() {
         return UUID.randomUUID();
@@ -375,8 +375,8 @@ public final class CommonUtils {
     /**
      * 获取唯一的UUID
      *
-     * @param context
-     * @return
+     * @param context 描述上下文对象
+     * @return 唯一的UUID
      */
     public static UUID getOnlyUUID(Context context) {
         TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);

@@ -5,7 +5,6 @@ import java.util.UUID;
 /**
  * Created by gujiwen on 15/4/8.
  */
-@SuppressWarnings("ALL")
 public enum UUIDs {
 
     SERVICE_DISCOVERY_SERVER_SERVICE_CLASS_ID_UUID("00001000-0000-1000-8000-00805F9B34FB"),

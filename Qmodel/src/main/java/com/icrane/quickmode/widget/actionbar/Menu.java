@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 /**
  * Created by gujiwen on 15/4/17.
  */
-@SuppressWarnings("ALL")
 public interface Menu {
 
     public enum Position {

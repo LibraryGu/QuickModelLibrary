@@ -9,7 +9,6 @@ import com.icrane.quickmode.app.effect.SlideEffect;
 import com.icrane.quickmode.app.fragment.IFragmentSwitcher;
 import com.icrane.quickmode.utils.common.CommonUtils;
 
-@SuppressWarnings("ALL")
 public final class FragmentHandler implements IFragmentSwitcher, Releasable {
 
     private String currentFragmentTag;
@@ -27,10 +26,10 @@ public final class FragmentHandler implements IFragmentSwitcher, Releasable {
     /**
      * 获取一个fragment处理对象
      *
+     * @param fragmentGenerator fragment生成器
      * @return fragment处理对象
      */
-    public static FragmentHandler getInstance(
-            FragmentGenerator fragmentGenerator) {
+    public static FragmentHandler getInstance(FragmentGenerator fragmentGenerator) {
         if (CommonUtils.isEmpty(fragmentHandler)) {
             fragmentHandler = new FragmentHandler(fragmentGenerator);
         }
@@ -110,6 +109,8 @@ public final class FragmentHandler implements IFragmentSwitcher, Releasable {
 
     /**
      * 是否脱离管理当前fragment
+     *
+     * @param ft FragmentTransaction对象
      */
     protected void detachCurrentFragment(FragmentTransaction ft) {
         // 获取fragment的标签，判断是否为空，如果不为空则detach这个fragment

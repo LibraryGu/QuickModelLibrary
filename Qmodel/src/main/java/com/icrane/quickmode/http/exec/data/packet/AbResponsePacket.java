@@ -12,7 +12,6 @@ import org.apache.http.Header;
 import java.util.List;
 import java.util.Map;
 
-@SuppressWarnings("ALL")
 public abstract class AbResponsePacket {
 
     /**
@@ -26,6 +25,7 @@ public abstract class AbResponsePacket {
      * 设置请求地址
      *
      * @param uri 请求地址
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setUri(String uri);
 
@@ -40,6 +40,7 @@ public abstract class AbResponsePacket {
      * 设置完整地址
      *
      * @param completeUri 完整地址
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setCompleteUri(String completeUri);
 
@@ -54,8 +55,9 @@ public abstract class AbResponsePacket {
      * 设置请求头
      *
      * @param headers 请求头
+     * @return AbResponsePacket
      */
-    public abstract AbResponsePacket setURLConnHeaders(Map<String,List<String>> headers);
+    public abstract AbResponsePacket setURLConnHeaders(Map<String, List<String>> headers);
 
     /**
      * 获取所有请求头
@@ -68,6 +70,7 @@ public abstract class AbResponsePacket {
      * 设置请求头
      *
      * @param headers 请求头
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setClientHeaders(Header[] headers);
 
@@ -82,6 +85,7 @@ public abstract class AbResponsePacket {
      * 设置请求表单
      *
      * @param httpRequestForm 请求表单
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setHttpRequestForm(
             HttpRequestForm httpRequestForm);
@@ -97,6 +101,7 @@ public abstract class AbResponsePacket {
      * 设置状态码
      *
      * @param statusCode 状态码
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setStatusCode(int statusCode);
 
@@ -111,6 +116,7 @@ public abstract class AbResponsePacket {
      * 设置内容长度
      *
      * @param contentLength 内容长度
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setContentLength(long contentLength);
 
@@ -125,6 +131,7 @@ public abstract class AbResponsePacket {
      * 设置内容类型
      *
      * @param contentType 内容类型
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setContentType(String contentType);
 
@@ -139,6 +146,7 @@ public abstract class AbResponsePacket {
      * 设置内容
      *
      * @param content 内容
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setContent(Object content);
 
@@ -153,6 +161,7 @@ public abstract class AbResponsePacket {
      * 设置缓存内容
      *
      * @param cacheContent 缓存内容
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setCacheContent(Object cacheContent);
 
@@ -167,6 +176,7 @@ public abstract class AbResponsePacket {
      * 设置字符编码
      *
      * @param charset 字符编码
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setCharset(Charset charset);
 
@@ -174,6 +184,7 @@ public abstract class AbResponsePacket {
      * 设置使用内存缓存
      *
      * @param useMemoryCache 如果为true表示使用内存缓存，false则表示不使用
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setUseMemoryCache(boolean useMemoryCache);
 
@@ -195,6 +206,7 @@ public abstract class AbResponsePacket {
      * 设置请求类型
      *
      * @param requestType 请求类型
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setRequestType(RequestType requestType);
 
@@ -209,6 +221,7 @@ public abstract class AbResponsePacket {
      * 设置错误信息
      *
      * @param httpError 错误信息
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setHttpErrorMessage(HttpError httpError);
 
@@ -223,6 +236,7 @@ public abstract class AbResponsePacket {
      * 设置数据类型
      *
      * @param dataType 数据类型
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setDataType(HttpDataType dataType);
 
@@ -230,6 +244,7 @@ public abstract class AbResponsePacket {
      * 设置使用硬件缓存
      *
      * @param useHardwareCache 如果为true表示使用硬件缓存，false则表示不使用
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setUseHardWareCache(boolean useHardwareCache);
 
@@ -251,6 +266,7 @@ public abstract class AbResponsePacket {
      * 设置字符编码
      *
      * @param cacheType 缓存类型
+     * @return AbResponsePacket
      */
     public abstract AbResponsePacket setCacheType(CacheType cacheType);
 }

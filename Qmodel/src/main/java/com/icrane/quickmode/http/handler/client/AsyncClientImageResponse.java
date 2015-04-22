@@ -16,7 +16,6 @@ import java.io.IOException;
 /**
  * Created by gujiwen on 15/3/19.
  */
-@SuppressWarnings("ALL")
 public abstract class AsyncClientImageResponse extends AsyncClientBasicResponse implements IAsyncResponseCallback<Bitmap> {
 
     @Override

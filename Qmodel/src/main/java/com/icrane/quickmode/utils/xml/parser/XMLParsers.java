@@ -20,7 +20,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-@SuppressWarnings("ALL")
 public class XMLParsers {
 
     private String input;
@@ -36,7 +35,7 @@ public class XMLParsers {
     /**
      * 使用sax解析xml
      *
-     * @param handler
+     * @param handler Handler对象
      */
     public void useSAXParse(ContentHandler handler) {
 
@@ -63,7 +62,7 @@ public class XMLParsers {
     /**
      * 使用Pull解析xml
      *
-     * @param listener
+     * @param listener xml解析监听
      */
     public void usePullParse(OnXmlPullParseListener listener) {
 

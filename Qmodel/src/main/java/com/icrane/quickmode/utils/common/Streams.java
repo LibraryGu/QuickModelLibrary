@@ -20,7 +20,6 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
-@SuppressWarnings("ALL")
 public final class Streams {
     /**
      * 获取BufferedReader
@@ -28,7 +27,7 @@ public final class Streams {
      * @param is          输入流
      * @param charsetName 编码名称
      * @return 返回BufferedReader
-     * @throws java.io.UnsupportedEncodingException
+     * @throws java.io.UnsupportedEncodingException 不支持编码异常
      */
     public static BufferedReader obtainBufferedReader(InputStream is,
                                                       Charset charsetName) throws UnsupportedEncodingException {
@@ -42,7 +41,7 @@ public final class Streams {
      * @param reader      输入流
      * @param charsetName 字符编码
      * @return 返回BufferedReader
-     * @throws java.io.UnsupportedEncodingException
+     * @throws java.io.UnsupportedEncodingException 不支持编码异常
      */
     public static BufferedReader obtainBufferedReader(Reader reader,
                                                       Charset charsetName) throws UnsupportedEncodingException {
@@ -53,8 +52,8 @@ public final class Streams {
      * 获取BufferedReader
      *
      * @param is 输入流
-     * @return
-     * @throws java.io.UnsupportedEncodingException
+     * @return 返回BufferedReader
+     * @throws java.io.UnsupportedEncodingException 不支持编码异常
      */
     public static BufferedReader obtainBufferedReader(InputStream is)
             throws UnsupportedEncodingException {
@@ -66,7 +65,7 @@ public final class Streams {
      *
      * @param filePath 文件路径
      * @return 返回FileReader
-     * @throws java.io.FileNotFoundException
+     * @throws java.io.FileNotFoundException 没找到指定文件异常
      */
     public static FileInputStream obtainFileInputStream(String filePath)
             throws FileNotFoundException {
@@ -78,7 +77,7 @@ public final class Streams {
      *
      * @param filePath 文件路径
      * @return 返回FileReader
-     * @throws java.io.FileNotFoundException
+     * @throws java.io.FileNotFoundException 没找到指定文件异常
      */
     public static FileReader obtainFileReader(String filePath)
             throws FileNotFoundException {
@@ -86,31 +85,31 @@ public final class Streams {
     }
 
     /**
-     * 获取BufferWirter
+     * 获取BufferWriter
      *
      * @param out 一个输出流
-     * @return BufferedWriter
+     * @return BufferedWriter 带缓存可写入的流
      */
     public static BufferedWriter obtainBufferedWriter(OutputStream out) {
         return obtainBufferedWriter(out, Charset.UTF_8);
     }
 
     /**
-     * 获取BufferWirter
+     * 获取BufferWrter
      *
      * @param writer 输出流
-     * @return BufferedWriter
+     * @return BufferedWriter 带缓存可写入的流
      */
     public static BufferedWriter obtainBufferedWriter(Writer writer) {
         return new BufferedWriter(writer);
     }
 
     /**
-     * 获取BufferWirter
+     * 获取BufferWriter
      *
      * @param out     一个输出流
      * @param charset 字符编码
-     * @return BufferedWriter
+     * @return BufferedWriter 带缓存可写入的流
      */
     public static BufferedWriter obtainBufferedWriter(OutputStream out,
                                                       Charset charset) {
@@ -128,11 +127,11 @@ public final class Streams {
      * 获取FileOutputStream
      *
      * @param filePath 文件路径
-     * @return FileOutputStream
-     * @throws java.io.IOException
+     * @param fileName 文件名称
+     * @return FileOutputStream 文件输出流
+     * @throws java.io.IOException IO异常
      */
-    public static FileOutputStream obtainFileOutputStream(String filePath,
-                                                          String fileName) throws IOException {
+    public static FileOutputStream obtainFileOutputStream(String filePath, String fileName) throws IOException {
         File file = new File(filePath);
         File newFile = new File(filePath + fileName);
         if (!file.exists())
@@ -144,8 +143,8 @@ public final class Streams {
      * 获取FileWriter
      *
      * @param filePath 文件路径
-     * @return FileWriter
-     * @throws java.io.IOException
+     * @return FileWriter 文件写入流
+     * @throws java.io.IOException IO异常
      */
     public static FileWriter obtainFileWriter(String filePath)
             throws IOException {
@@ -155,8 +154,8 @@ public final class Streams {
     /**
      * 读取操作
      *
-     * @param br
-     * @return
+     * @param br 带缓存可读取的流
+     * @return 字符串对象
      */
     public static String read(BufferedReader br) {
         String temp = "";
@@ -178,11 +177,12 @@ public final class Streams {
     }
 
     /**
-     * 读取bytes
-     * @param is
-     * @param buffSize
-     * @param length
-     * @return
+     * 读取byte[]
+     *
+     * @param is       输入流
+     * @param buffSize 缓冲大小
+     * @param length   读取长度
+     * @return 返回byte[]
      */
     public static byte[] read(InputStream is, int buffSize, long length) {
         if (buffSize <= 0)
@@ -213,7 +213,7 @@ public final class Streams {
      *
      * @param writer  BufferedWriter
      * @param content 内容
-     * @return
+     * @return true写入成功，反之为false
      */
     public static boolean writer(BufferedWriter writer, String content) {
         try {

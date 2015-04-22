@@ -20,7 +20,6 @@ import com.icrane.quickmode.utils.image.ImageLoaderUtils;
 import com.icrane.quickmode.widget.actionbar.ActionBar;
 import com.icrane.quickmode.widget.actionbar.ActionBarLayout;
 
-@SuppressWarnings("ALL")
 public class QModelActivity extends FragmentActivity {
 
     public static Handler mainHandler = new Handler() {
@@ -266,7 +265,7 @@ public class QModelActivity extends FragmentActivity {
     /**
      * 获取基类中的handler对象
      *
-     * @return
+     * @return handler对象
      */
     public Handler getMainHandler() {
         return mainHandler;

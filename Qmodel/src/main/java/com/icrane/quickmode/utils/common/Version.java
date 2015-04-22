@@ -7,7 +7,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 
 import com.icrane.quickmode.app.QModel;
 
-@SuppressWarnings("ALL")
 public final class Version {
 
 

@@ -12,7 +12,6 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("ALL")
 public final class AMPlusReflector {
 
     /**
@@ -22,10 +21,9 @@ public final class AMPlusReflector {
      * @param fieldName   域名称
      * @param reflectType 指定获取域的类型(DEFAULT or DECLARED)
      * @return 域实例
-     * @throws NoSuchFieldException
+     * @throws NoSuchFieldException 找不到文件异常
      */
-    public static Field getField(Class<?> cls, String fieldName,
-                                 ReflectType reflectType) throws NoSuchFieldException {
+    public static Field getField(Class<?> cls, String fieldName, ReflectType reflectType) throws NoSuchFieldException {
         Field field = isDefaultType(reflectType) ? cls.getField(fieldName) : cls
                 .getDeclaredField(fieldName);
         field.setAccessible(Modifier.isPrivate(getModifier(field.getClass())));
@@ -40,12 +38,10 @@ public final class AMPlusReflector {
      * @param reflectType    指定获取方法的类型(DEFAULT or DECLARED)
      * @param parameterTypes 方法参数类型，可为null，当为null时，即获取无参数的方法
      * @return 方法实例
-     * @throws NoSuchFieldException
+     * @throws java.lang.NoSuchMethodException 类不包含指定名称的字段时产生的信号
      */
 
-    public static Method getMethod(Class<?> cls, String methodName,
-                                   ReflectType reflectType, Class<?>... parameterTypes)
-            throws NoSuchMethodException {
+    public static Method getMethod(Class<?> cls, String methodName, ReflectType reflectType, Class<?>... parameterTypes) throws NoSuchMethodException {
         Method method = isDefaultType(reflectType) ? cls.getMethod(methodName,
                 parameterTypes) : cls.getDeclaredMethod(methodName,
                 parameterTypes);
@@ -60,11 +56,9 @@ public final class AMPlusReflector {
      * @param reflectType    指定获取构造方法的类型(DEFAULT or DECLARED)
      * @param parameterTypes 构造方法参数类型，可为null，当为null时，即获取无参数的构造方法
      * @return 构造方法实例
-     * @throws NoSuchMethodException
+     * @throws NoSuchMethodException NoSuchMethodException异常
      */
-    public static Constructor<?> getConstructor(Class<?> cls,
-                                                ReflectType reflectType, Class<?>... parameterTypes)
-            throws NoSuchMethodException {
+    public static Constructor<?> getConstructor(Class<?> cls, ReflectType reflectType, Class<?>... parameterTypes) throws NoSuchMethodException {
         Constructor<?> constructor = isDefaultType(reflectType) ? cls
                 .getConstructor(parameterTypes) : cls
                 .getDeclaredConstructor(parameterTypes);
@@ -117,8 +111,7 @@ public final class AMPlusReflector {
      * @param reflectType 反射类型
      * @return 返回构造方法数组
      */
-    public static Constructor<?>[] getConstructors(Class<?> cls,
-                                                   ReflectType reflectType) {
+    public static Constructor<?>[] getConstructors(Class<?> cls, ReflectType reflectType) {
         Constructor<?>[] constructors = isDefaultType(reflectType) ? cls
                 .getConstructors() : cls.getDeclaredConstructors();
         return constructors;
@@ -132,11 +125,11 @@ public final class AMPlusReflector {
      * @param reflectType    反射类型
      * @param parameterTypes 参数类型
      * @param args           参数
+     * @param <T>            泛型
      * @return 返回实例
      */
     @SuppressWarnings("unchecked")
-    public static <T> T newInstanceFromConstructor(Type type,
-                                                   ReflectType reflectType, Class<?>[] parameterTypes, Object[] args) {
+    public static <T> T newInstanceFromConstructor(Type type, ReflectType reflectType, Class<?>[] parameterTypes, Object[] args) {
         T object = null;
         Class<?> typeClass = (Class<?>) type;
         try {
@@ -162,11 +155,11 @@ public final class AMPlusReflector {
      *
      * @param constructor 构造函数
      * @param args        参数
-     * @return
+     * @param <T>         泛型
+     * @return 新实例
      */
     @SuppressWarnings("unchecked")
-    public static <T> T newInstanceFromConstructor(Constructor<?> constructor,
-                                                   Object... args) {
+    public static <T> T newInstanceFromConstructor(Constructor<?> constructor, Object... args) {
         T object = null;
         try {
             object = (T) constructor.newInstance(args);
@@ -186,7 +179,8 @@ public final class AMPlusReflector {
      * 默认调用构造一个新对象
      *
      * @param cls 类类型
-     * @return
+     * @param <T> 泛型
+     * @return 新实例
      */
     @SuppressWarnings("unchecked")
     public static <T> T newInstance(Class<?> cls) {
@@ -227,6 +221,7 @@ public final class AMPlusReflector {
      * @param obj    实例对象
      * @param method 方法实例
      * @param args   方法参数
+     * @return Object
      */
     public static Object invokeMethod(Object obj, Method method, Object... args) {
         try {
@@ -249,9 +244,9 @@ public final class AMPlusReflector {
      * @param parameterTypes 参数类型
      * @param reflectType    反射类型
      * @param args           参数
+     * @return Object
      */
-    public static Object invokeMethod(Object obj, String methodName,
-                                      Class<?>[] parameterTypes, ReflectType reflectType, Object... args) {
+    public static Object invokeMethod(Object obj, String methodName, Class<?>[] parameterTypes, ReflectType reflectType, Object... args) {
         Method method = null;
         try {
             method = getMethod(obj.getClass(), methodName, reflectType,
@@ -272,12 +267,10 @@ public final class AMPlusReflector {
      * @param methodName      方法名
      * @param reflectType     反射类型
      * @param _parameterTypes 参数类型
-     * @return
-     * @throws NoSuchMethodException
+     * @return 反射Method
+     * @throws NoSuchMethodException 找不到方法异常
      */
-    public static Method findMethod(Class<?> cls, String methodName,
-                                    ReflectType reflectType, Class<?>... _parameterTypes)
-            throws NoSuchMethodException {
+    public static Method findMethod(Class<?> cls, String methodName, ReflectType reflectType, Class<?>... _parameterTypes) throws NoSuchMethodException {
         // 获取所有此Class的所有方法
         Method[] methods = getMethods(cls, reflectType);
         for (Method method : methods) {
@@ -312,18 +305,17 @@ public final class AMPlusReflector {
      *
      * @param superClass 父类类型
      * @param subClass   子类类型
-     * @return
+     * @return true表示是从此superClass继承而来，反之false
      */
-    public static boolean isAssignableFrom(Class<?> superClass,
-                                           Class<?> subClass) {
+    public static boolean isAssignableFrom(Class<?> superClass, Class<?> subClass) {
         return superClass.isAssignableFrom(subClass);
     }
 
     /**
      * 根据对象获取类型
      *
-     * @param args
-     * @return
+     * @param args 对象数组
+     * @return Class[]数组
      */
     public static Class<?>[] getParameterTypes(Object... args) {
         Class<?>[] parameterTypes = new Class<?>[args.length];
@@ -334,15 +326,21 @@ public final class AMPlusReflector {
     }
 
     /**
-     * 判断是否是Class
+     * 判断是否是Class类型对象
      *
-     * @param obj
-     * @return
+     * @param obj 需要判断的对象
+     * @return true表示是Class类型，反之返回false
      */
     public static boolean isClass(Object obj) {
         return obj instanceof Class;
     }
 
+    /**
+     * 判断基础类型
+     *
+     * @param data Object对象
+     * @return true表示是基本数据类型，反之返回false
+     */
     public static boolean isBasicTypes(Object data) {
         if (data instanceof Integer) {
             return true;
@@ -367,8 +365,8 @@ public final class AMPlusReflector {
     /**
      * 转换参数为参数数组
      *
-     * @param args
-     * @return
+     * @param args 参数数组
+     * @return 参数数组中对象类型数组
      */
     public static Class<?>[] convertToParamsType(Object... args) {
         // 创建参数类型数组
@@ -384,8 +382,8 @@ public final class AMPlusReflector {
     /**
      * 转换参数为参数数组
      *
-     * @param args
-     * @return
+     * @param args 参数数组
+     * @return 参数数组中对象类型数组
      */
     public static Class<?>[] convertToParamsSuperType(Object... args) {
         // 创建参数类型数组
@@ -401,8 +399,8 @@ public final class AMPlusReflector {
     /**
      * 转换域数组为Map
      *
-     * @param fields
-     * @return
+     * @param fields 属性数组
+     * @return 属性集合
      */
     public static Map<String, Field> convertFieldsToMap(Field[] fields) {
         Map<String, Field> fieldsMap = new HashMap<String, Field>();
@@ -416,8 +414,8 @@ public final class AMPlusReflector {
     /**
      * 转换基础类型
      *
-     * @param data
-     * @return
+     * @param data 需要转换的对象
+     * @return Class对象
      */
     public static Class<?> convertToBasicTypes(Object data) {
         if (data instanceof Integer) {
@@ -443,8 +441,8 @@ public final class AMPlusReflector {
     /**
      * 转换为父类类型
      *
-     * @param data
-     * @return
+     * @param data 需要转换的对象
+     * @return Class对象
      */
     public static Class<?> convertToSuperClass(Object data) {
         Class<?> superClass = data.getClass().getSuperclass();
@@ -453,6 +451,9 @@ public final class AMPlusReflector {
         return superClass;
     }
 
+    /**
+     * 反射的类型枚举
+     */
     public enum ReflectType {
         DEFAULT, DECLARED;
     }

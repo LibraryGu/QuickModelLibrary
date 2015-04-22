@@ -10,7 +10,6 @@ import java.io.IOException;
 /**
  * Created by gujiwen on 15/3/18.
  */
-@SuppressWarnings("ALL")
 public abstract class AsyncClientByteResponse extends AsyncClientBasicResponse {
 
     /**

@@ -15,7 +15,6 @@ import org.apache.http.HttpResponse;
 
 import java.io.IOException;
 
-@SuppressWarnings("ALL")
 public abstract class AsyncClientBasicResponse extends AsyncResponseHandler<HttpResponse> {
 
     @Override
