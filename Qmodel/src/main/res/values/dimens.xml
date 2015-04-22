@@ -3,4 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="drawable_48px">72dp</dimen>
+    <dimen name="limited_edit_text_height">127dp</dimen>
+    <dimen name="weibo_list_item_content_text_size">14sp</dimen>
 </resources>

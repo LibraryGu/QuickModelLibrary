@@ -11,4 +11,8 @@
     <color name="orange">#FFBB33</color>
     <!--猩红色-->
     <color name="scarlet">#FF4444</color>
+    <!--黑体-->
+    <color name="limited_text_num">#505050</color>
+    <!--深黑色-->
+    <color name="register_btn_text">#282828</color>
 </resources>
