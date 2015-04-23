@@ -19,6 +19,7 @@ import com.icrane.quickmode.app.fragment.utils.FragmentGenerator;
 import com.icrane.quickmode.app.fragment.utils.FragmentHandler;
 import com.icrane.quickmode.utils.common.CommonUtils;
 import com.icrane.quickmode.utils.image.ImageLoaderUtils;
+import com.icrane.quickmode.widget.ViewLayoutParams;
 import com.icrane.quickmode.widget.actionbar.ActionBar;
 import com.icrane.quickmode.widget.actionbar.ActionBarLayout;
 
@@ -213,16 +214,20 @@ public class QModelActivity extends FragmentActivity {
 
 // ---------------------- Custom Method ----------------------//
 
-    @Override
-    public void setContentView(int layoutResID) {
+    public void setContentView(int layoutResID, ViewGroup.LayoutParams params) {
 
         this.mQModelActionBar = new ActionBarLayout(this);
-        this.mQModelActionBar.setActionBarContentView(layoutResID);
+        this.mQModelActionBar.setActionBarContentView(layoutResID, params);
         View actionBarContentView = this.mQModelActionBar.getActionBarContentView();
         this.basicContentView = (ViewGroup) ((CommonUtils.isEmpty(actionBarContentView)) ? getLayoutInflater()
                 .inflate(layoutResID, this.mQModelActionBar, false) : actionBarContentView);
         super.setContentView(this.mQModelActionBar);
 
+    }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        this.setContentView(layoutResID, ViewLayoutParams.MATCH_AND_WRAP.obtain(ViewGroup.LayoutParams.class));
     }
 
     /**

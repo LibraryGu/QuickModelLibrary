@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class AMPlusReflector {
+public final class Reflector {
 
     /**
      * 获取指定类型的域实例；
@@ -21,7 +21,7 @@ public final class AMPlusReflector {
      * @param fieldName   域名称
      * @param reflectType 指定获取域的类型(DEFAULT or DECLARED)
      * @return 域实例
-     * @throws NoSuchFieldException 找不到文件异常
+     * @throws NoSuchFieldException {@link java.lang.NoSuchFieldException}
      */
     public static Field getField(Class<?> cls, String fieldName, ReflectType reflectType) throws NoSuchFieldException {
         Field field = isDefaultType(reflectType) ? cls.getField(fieldName) : cls
@@ -38,7 +38,7 @@ public final class AMPlusReflector {
      * @param reflectType    指定获取方法的类型(DEFAULT or DECLARED)
      * @param parameterTypes 方法参数类型，可为null，当为null时，即获取无参数的方法
      * @return 方法实例
-     * @throws java.lang.NoSuchMethodException 类不包含指定名称的字段时产生的信号
+     * @throws java.lang.NoSuchMethodException {@link java.lang.NoSuchMethodException}
      */
 
     public static Method getMethod(Class<?> cls, String methodName, ReflectType reflectType, Class<?>... parameterTypes) throws NoSuchMethodException {
@@ -56,7 +56,7 @@ public final class AMPlusReflector {
      * @param reflectType    指定获取构造方法的类型(DEFAULT or DECLARED)
      * @param parameterTypes 构造方法参数类型，可为null，当为null时，即获取无参数的构造方法
      * @return 构造方法实例
-     * @throws NoSuchMethodException NoSuchMethodException异常
+     * @throws NoSuchMethodException {@link java.lang.NoSuchMethodException}
      */
     public static Constructor<?> getConstructor(Class<?> cls, ReflectType reflectType, Class<?>... parameterTypes) throws NoSuchMethodException {
         Constructor<?> constructor = isDefaultType(reflectType) ? cls
@@ -268,7 +268,7 @@ public final class AMPlusReflector {
      * @param reflectType     反射类型
      * @param _parameterTypes 参数类型
      * @return 反射Method
-     * @throws NoSuchMethodException 找不到方法异常
+     * @throws NoSuchMethodException {@link java.lang.NoSuchMethodException}
      */
     public static Method findMethod(Class<?> cls, String methodName, ReflectType reflectType, Class<?>... _parameterTypes) throws NoSuchMethodException {
         // 获取所有此Class的所有方法

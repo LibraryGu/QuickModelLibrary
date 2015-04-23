@@ -219,14 +219,14 @@ public interface ActionBar {
      *
      * @param layoutID 资源id
      */
-    public void setActionBarContentView(int layoutID);
+    public void setActionBarContentView(int layoutID, ViewGroup.LayoutParams params);
 
     /**
      * 设置内容视图
      *
      * @param layoutView 资源id
      */
-    public void setActionBarContentView(View layoutView);
+    public void setActionBarContentView(View layoutView, ViewGroup.LayoutParams params);
 
     /**
      * 获取ActionBar的内容视图

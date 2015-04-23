@@ -2,11 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.0"
-group = "com.icrane.quickmode"
-def SITE_URL = "https://github.com/LibraryGu/QuickModelLibrary"
-def GIT_URL = "https://github.com/LibraryGu/QuickModelLibrary.git"
-
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
@@ -24,6 +19,14 @@ android {
         }
     }
 }
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+version = properties.getProperty("bintray.version")
+group = properties.getProperty("bintray.group")
+def SITE_URL = properties.getProperty("bintray.siteUrl")
+def GIT_URL = properties.getProperty("bintray.gitUrl")
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -47,9 +50,9 @@ install {
                 }
                 developers {
                     developer {
-                        id 'librarygu'
-                        name 'librarygu'
-                        email 'oraclegu@163.com'
+                        id properties.getProperty('developer.id')
+                        name properties.getProperty('developer.name')
+                        email properties.getProperty('developer.email')
                     }
                 }
                 scm {
@@ -81,15 +84,13 @@ artifacts {
     archives sourcesJar
 }
 
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
-        repo = "maven"
-        name = "quickmodel-core"                // project name in jcenter
+        repo = properties.getProperty('pkg.repo')
+        name = properties.getProperty('pkg.name')               // project name in jcenter
         websiteUrl = SITE_URL
         vcsUrl = GIT_URL
         licenses = ["Apache-2.0"]

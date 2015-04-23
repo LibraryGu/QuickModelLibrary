@@ -152,7 +152,7 @@ public class ActionBarLayout extends ViewGroup implements ActionBar, View.OnClic
         backMenu = new ActionBarMenu(getContext());
         titleMenu = new ActionBarMenu(getContext());
 
-        backMenu.setBackgroundResource(R.drawable.selecor_action_back);
+        backMenu.menuIcon(R.drawable.selecor_action_back, Menu.Position.DRAWABLE_LEFT);
         backMenu.setTag(ACTIONBAR_MENU_BACK_TAG);
         backMenu.setOnClickListener(this);
         backMenu.setGravity(Gravity.CENTER);
@@ -302,21 +302,30 @@ public class ActionBarLayout extends ViewGroup implements ActionBar, View.OnClic
 
     @Override
     public void addCustomView(View view, LayoutParams params, Module module) {
+
+        LinearLayout mArea = null;
+        SparseArray<View> mSparseArray = null;
+
         if (view != null) {
             switch (module) {
                 case LEFT:
+                    mArea = mLeftArea;
+                    mSparseArray = mLeftAreaArray;
                     mLeftArea.addView(view, params);
-                    addChildForArea(mLeftArea, mLeftAreaArray, view);
                     break;
                 case CENTER:
+                    mArea = mCenterArea;
+                    mSparseArray = mCenterAreaArray;
                     mCenterArea.addView(view, params);
-                    addChildForArea(mCenterArea, mCenterAreaArray, view);
                     break;
                 case RIGHT:
+                    mArea = mRightArea;
+                    mSparseArray = mRightAreaArray;
                     mRightArea.addView(view, params);
-                    addChildForArea(mRightArea, mRightAreaArray, view);
                     break;
             }
+            addChildForArea(mArea, mSparseArray, view);
+
         }
     }
 
@@ -380,16 +389,16 @@ public class ActionBarLayout extends ViewGroup implements ActionBar, View.OnClic
     }
 
     @Override
-    public void setActionBarContentView(int layoutID) {
+    public void setActionBarContentView(int layoutID, LayoutParams params) {
         this.layoutID = layoutID;
         this.mActionBarContentView = this.getLayoutInflater().inflate(this.layoutID, mActionBarContainer, false);
-        this.setActionBarContentView(this.mActionBarContentView);
+        this.setActionBarContentView(this.mActionBarContentView, params);
     }
 
     @Override
-    public void setActionBarContentView(View layoutView) {
+    public void setActionBarContentView(View layoutView, LayoutParams params) {
         this.mActionBarContentView = layoutView;
-        this.mActionBarContainer.addView(this.mActionBarContentView);
+        this.mActionBarContainer.addView(this.mActionBarContentView, params);
     }
 
     @Override

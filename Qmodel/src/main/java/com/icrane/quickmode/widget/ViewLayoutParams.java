@@ -2,7 +2,7 @@ package com.icrane.quickmode.widget;
 
 import android.view.ViewGroup.LayoutParams;
 
-import com.icrane.quickmode.utils.reflect.AMPlusReflector;
+import com.icrane.quickmode.utils.reflect.Reflector;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
@@ -51,10 +51,10 @@ public enum ViewLayoutParams {
         Class<?> typeClass = (Class<?>) type;
         T layoutParams = null;
         try {
-            Class<?>[] parameterTypes = obj != null ? AMPlusReflector.convertToParamsType(obj) : AMPlusReflector.convertToParamsType(w, h);
-            Constructor<?> constructor = AMPlusReflector.getConstructor(
-                    typeClass, AMPlusReflector.ReflectType.DEFAULT, parameterTypes);
-            layoutParams = AMPlusReflector.newInstanceFromConstructor(
+            Class<?>[] parameterTypes = obj != null ? Reflector.convertToParamsType(obj) : Reflector.convertToParamsType(w, h);
+            Constructor<?> constructor = Reflector.getConstructor(
+                    typeClass, Reflector.ReflectType.DEFAULT, parameterTypes);
+            layoutParams = Reflector.newInstanceFromConstructor(
                     constructor, obj);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();

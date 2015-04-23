@@ -39,19 +39,19 @@ public final class JSONReflector<T> {
      * @throws org.json.JSONException           {@link org.json.JSONException}
      * @throws java.lang.IllegalAccessException {@link java.lang.IllegalAccessException}
      */
-    public static <T> T toModel(JSONObject jsonObject, Type type, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
+    public static <T> T toModel(JSONObject jsonObject, Type type, Reflector.ReflectType f_type) throws JSONException, IllegalAccessException {
 
         if (jsonObject == null) throw new NullPointerException("JSONObject is null");
         // 获取迭代器
         Iterator<String> keys = jsonObject.keys();
         // 获取实例
-        T object = AMPlusReflector.newInstance((Class<?>) type);
+        T object = Reflector.newInstance((Class<?>) type);
         // 获取实例类型
         Class<?> cls = object.getClass();
         // 获取域数组
-        Field[] fields = AMPlusReflector.getFields(cls, f_type);
+        Field[] fields = Reflector.getFields(cls, f_type);
         // 生成Map实例
-        Map<String, Field> fieldsMap = AMPlusReflector.convertFieldsToMap(fields);
+        Map<String, Field> fieldsMap = Reflector.convertFieldsToMap(fields);
 
         while (keys.hasNext()) {
             String key = keys.next();
@@ -76,7 +76,7 @@ public final class JSONReflector<T> {
      * @throws org.json.JSONException           {@link org.json.JSONException}
      * @throws java.lang.IllegalAccessException {@link java.lang.IllegalAccessException}
      */
-    public static <T> List<T> toModel(JSONArray jsonArray, Type type, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
+    public static <T> List<T> toModel(JSONArray jsonArray, Type type, Reflector.ReflectType f_type) throws JSONException, IllegalAccessException {
 
         if (jsonArray == null) throw new NullPointerException("JSONArray is null");
         List<T> objectList = new ArrayList<T>();
@@ -97,7 +97,7 @@ public final class JSONReflector<T> {
      * @throws org.json.JSONException           {@link org.json.JSONException}
      * @throws java.lang.IllegalAccessException {@link java.lang.IllegalAccessException}
      */
-    public static Map<String, Object> toModel(JSONObject jsonObject, AMPlusReflector.ReflectType f_type) throws JSONException, IllegalAccessException {
+    public static Map<String, Object> toModel(JSONObject jsonObject, Reflector.ReflectType f_type) throws JSONException, IllegalAccessException {
 
         if (jsonObject == null) throw new NullPointerException("JSONObject is null");
         Map<String, Object> category = new HashMap<String, Object>();
@@ -124,11 +124,11 @@ public final class JSONReflector<T> {
      * @return JSONObject对象
      * @throws java.lang.IllegalAccessException {@link java.lang.IllegalAccessException}
      */
-    public static JSONObject toJSONObject(Object object, AMPlusReflector.ReflectType f_type) throws IllegalAccessException {
+    public static JSONObject toJSONObject(Object object, Reflector.ReflectType f_type) throws IllegalAccessException {
 
         if (object == null) throw new NullPointerException("object is null");
         Map<String, Object> category = new HashMap<String, Object>();
-        Field[] fields = AMPlusReflector.getFields(object.getClass(), f_type);
+        Field[] fields = Reflector.getFields(object.getClass(), f_type);
 
         for (Field field : fields) {
             Object value = field.get(object);
@@ -151,11 +151,11 @@ public final class JSONReflector<T> {
      * @return JSONArray对象
      * @throws java.lang.IllegalAccessException {@link java.lang.IllegalAccessException}
      */
-    public static JSONArray toJSONArray(Object object, AMPlusReflector.ReflectType f_type) throws IllegalAccessException {
+    public static JSONArray toJSONArray(Object object, Reflector.ReflectType f_type) throws IllegalAccessException {
 
         if (object == null) throw new NullPointerException("object is null");
         List<Object> category = new ArrayList<Object>();
-        Field[] fields = AMPlusReflector.getFields(object.getClass(), f_type);
+        Field[] fields = Reflector.getFields(object.getClass(), f_type);
 
         for (Field field : fields) {
             Object value = field.get(object);

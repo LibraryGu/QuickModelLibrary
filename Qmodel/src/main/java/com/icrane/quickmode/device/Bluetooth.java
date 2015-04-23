@@ -15,7 +15,7 @@ import com.icrane.quickmode.app.QModel;
 import com.icrane.quickmode.app.Releasable;
 import com.icrane.quickmode.app.activity.QModelActivity;
 import com.icrane.quickmode.utils.common.CommonUtils;
-import com.icrane.quickmode.utils.reflect.AMPlusReflector;
+import com.icrane.quickmode.utils.reflect.Reflector;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -170,9 +170,9 @@ public final class Bluetooth implements Releasable {
      */
     public void cancelBondProcess(BluetoothDevice device) {
         try {
-            AMPlusReflector.invokeMethod(device,
-                    AMPlusReflector.getMethod(device.getClass(),
-                            "cancelBondProcess", AMPlusReflector.ReflectType.DEFAULT));
+            Reflector.invokeMethod(device,
+                    Reflector.getMethod(device.getClass(),
+                            "cancelBondProcess", Reflector.ReflectType.DEFAULT));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -185,9 +185,9 @@ public final class Bluetooth implements Releasable {
      */
     public void cancelPairingUserInput(BluetoothDevice device) {
         try {
-            AMPlusReflector.invokeMethod(device, AMPlusReflector.getMethod(
+            Reflector.invokeMethod(device, Reflector.getMethod(
                     device.getClass(), "cancelPairingUserInput",
-                    AMPlusReflector.ReflectType.DEFAULT));
+                    Reflector.ReflectType.DEFAULT));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -200,8 +200,8 @@ public final class Bluetooth implements Releasable {
      */
     public void removeBond(BluetoothDevice device) {
         try {
-            AMPlusReflector.invokeMethod(device, AMPlusReflector.getMethod(
-                    device.getClass(), "removeBond", AMPlusReflector.ReflectType.DEFAULT));
+            Reflector.invokeMethod(device, Reflector.getMethod(
+                    device.getClass(), "removeBond", Reflector.ReflectType.DEFAULT));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }

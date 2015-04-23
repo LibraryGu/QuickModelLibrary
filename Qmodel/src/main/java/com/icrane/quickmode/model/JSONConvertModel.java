@@ -1,6 +1,6 @@
 package com.icrane.quickmode.model;
 
-import com.icrane.quickmode.utils.reflect.AMPlusReflector;
+import com.icrane.quickmode.utils.reflect.Reflector;
 import com.icrane.quickmode.utils.reflect.JSONReflector;
 
 import org.json.JSONArray;
@@ -13,12 +13,12 @@ public abstract class JSONConvertModel implements JSONConvert {
 
     @Override
     public JSONObject convertToJSONObject() throws IllegalAccessException {
-        return JSONReflector.toJSONObject(this, AMPlusReflector.ReflectType.DEFAULT);
+        return JSONReflector.toJSONObject(this, Reflector.ReflectType.DEFAULT);
     }
 
     @Override
     public JSONArray convertToJSONArray() throws IllegalAccessException {
-        return JSONReflector.toJSONArray(this, AMPlusReflector.ReflectType.DEFAULT);
+        return JSONReflector.toJSONArray(this, Reflector.ReflectType.DEFAULT);
     }
 
     @Override

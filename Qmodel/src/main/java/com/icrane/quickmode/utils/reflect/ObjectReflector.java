@@ -10,7 +10,7 @@ public final class ObjectReflector {
 
     private Object object;
     private Type objectType;
-    private AMPlusReflector.ReflectType reflectType = AMPlusReflector.ReflectType.DEFAULT;
+    private Reflector.ReflectType reflectType = Reflector.ReflectType.DEFAULT;
     private Class<?> objectClass;
 
     public ObjectReflector() {
@@ -37,16 +37,16 @@ public final class ObjectReflector {
         // 设置对象类型Class对象
         this.setObjectClass((Class<?>) this.objectType);
         // 判断将要实例化的对象衍生至何类型
-        if (AMPlusReflector.isAssignableFrom(extendsClass, this.objectClass)) {
+        if (Reflector.isAssignableFrom(extendsClass, this.objectClass)) {
             try {
                 // 获取参数类型数组
-                Class<?>[] parameterTypes = AMPlusReflector
+                Class<?>[] parameterTypes = Reflector
                         .convertToParamsType(args);
                 // 获取对象构造函数
-                Constructor<?> constructor = AMPlusReflector.getConstructor(
+                Constructor<?> constructor = Reflector.getConstructor(
                         this.objectClass, reflectType, parameterTypes);
                 // 实例化对象
-                this.object = AMPlusReflector.newInstanceFromConstructor(
+                this.object = Reflector.newInstanceFromConstructor(
                         constructor, args);
                 // 判断对象是否为null,如果为true，则反射实例化对象失败
                 if (CommonUtils.isEmpty(this.object)) {
@@ -72,12 +72,12 @@ public final class ObjectReflector {
     public void invokeObjectMethod(String methodName, Object... args) {
         try {
             // 获取参数类型数组
-            Class<?>[] parameterTypes = AMPlusReflector
+            Class<?>[] parameterTypes = Reflector
                     .convertToParamsType(args);
-            Method method = AMPlusReflector.getMethod(
+            Method method = Reflector.getMethod(
                     this.getReflectObjectClass(), methodName, reflectType,
                     parameterTypes);
-            AMPlusReflector
+            Reflector
                     .invokeMethod(this.getReflectObject(), method, args);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -89,7 +89,7 @@ public final class ObjectReflector {
      *
      * @return 反射类型
      */
-    public AMPlusReflector.ReflectType getReflectType() {
+    public Reflector.ReflectType getReflectType() {
         return this.reflectType;
     }
 
@@ -98,7 +98,7 @@ public final class ObjectReflector {
      *
      * @param reflectType 反射类型
      */
-    public void setReflectType(AMPlusReflector.ReflectType reflectType) {
+    public void setReflectType(Reflector.ReflectType reflectType) {
         this.reflectType = reflectType;
     }
 

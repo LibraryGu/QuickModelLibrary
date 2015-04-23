@@ -46,7 +46,7 @@ public class LimitedEditText extends LinearLayout implements TextWatcher {
 
         LayoutParams params;
         editText = new EditText(context);
-        editText.setBackgroundResource(R.mipmap.bg_text_bar_n_9);
+        editText.setBackgroundResource(R.mipmap.bg_text_bar_n);
         editText.setGravity(Gravity.TOP);
         int padding = (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 5, resources.getDisplayMetrics());
