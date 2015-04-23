@@ -287,6 +287,7 @@ public final class CommonUtils {
      * @return Drawable图片
      */
     public static Drawable obtainDrawable(Context context, Bitmap bitmap) {
+        if (bitmap == null) return null;
         return new BitmapDrawable(context.getResources(), bitmap);
     }
 
@@ -298,6 +299,7 @@ public final class CommonUtils {
      * @return Drawable图片
      */
     public static Drawable obtainDrawable(Context context, InputStream is) {
+        if (is == null) return null;
         return new BitmapDrawable(context.getResources(), is);
     }
 
@@ -310,8 +312,7 @@ public final class CommonUtils {
      * @return Drawable图片
      */
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
-    public static Drawable obtainDensityDrawable(Context context, int resId,
-                                                 int density) {
+    public static Drawable obtainDensityDrawable(Context context, int resId, int density) {
         if (resId <= 0) return null;
         return context.getResources().getDrawableForDensity(resId, density);
     }
